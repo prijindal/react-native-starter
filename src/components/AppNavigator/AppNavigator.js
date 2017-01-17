@@ -46,8 +46,9 @@ class AppNavigator extends Component {
         captureGestures
       >
         <StatusBar
-          backgroundColor={theme.statusBarColor}
-          barStyle="default"
+          animated
+          translucent
+          backgroundColor={theme.transparent}
         />
         <NavigationProvider router={Router}>
           <StackNavigation initialRoute={Router.getRoute('home')} />

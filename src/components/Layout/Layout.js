@@ -5,6 +5,13 @@ import { ToolbarAndroid } from 'react-native-vector-icons/MaterialIcons';
 import theme from '../../themes/base-theme';
 
 const styles = {
+  container: {
+    // marginTop: 24,
+  },
+  statusbar: {
+    height: 24,
+    backgroundColor: theme.statusBarColor,
+  },
   toolbar: {
     height: 56,
     backgroundColor: theme.toolbarDefaultBg,
@@ -16,6 +23,8 @@ class Layout extends Component {
     enableBackButton: false,
     title: 'StarterKit',
     subtitle: '',
+    actions: [],
+    onActionSelected: () => {},
   }
 
   static propTypes = {
@@ -27,6 +36,10 @@ class Layout extends Component {
     enableBackButton: PropTypes.bool,
     title: PropTypes.string,
     subtitle: PropTypes.string,
+    actions: PropTypes.arrayOf(
+      PropTypes.shape({}),
+    ),
+    onActionSelected: PropTypes.func,
   }
 
   pop = () => {
@@ -34,7 +47,7 @@ class Layout extends Component {
   }
 
   render() {
-    let toolbarProps = {
+    const toolbarProps = {
       onIconClicked: this.props.openDrawer,
       navIconName: 'menu',
     };
@@ -43,11 +56,14 @@ class Layout extends Component {
       toolbarProps.navIconName = 'arrow-back';
     }
     return (
-      <View>
+      <View style={styles.container}>
+        <View style={styles.statusbar} />
         <ToolbarAndroid
           style={styles.toolbar}
           title={this.props.title}
           subtitle={this.props.subtitle}
+          actions={this.props.actions}
+          onActionSelected={this.props.onActionSelected}
           titleColor={theme.primaryWhiteText}
           subtitleColor={theme.secondaryWhiteText}
           {...toolbarProps}

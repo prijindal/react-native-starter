@@ -32,11 +32,27 @@ class Home extends Component {
     );
   }
 
+  getActions() {
+    return [
+      {
+        title: 'Notifications',
+        iconName: 'notifications',
+        show: 'always',
+      },
+      {
+        title: 'Login',
+        iconName: 'person',
+        show: 'always',
+      },
+    ];
+  }
+
   render() {
     const { loading, list } = this.state;
     return (
       <Layout
         title="Home"
+        actions={this.getActions()}
         navigator={this.props.navigator}
       >
         {loading ?

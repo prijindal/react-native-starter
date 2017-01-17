@@ -7,6 +7,9 @@ export default {
   get toolbarDefaultBg() {
     return this.primary500;
   },
+  get transparent() {
+    return color(this.primary700).alpha(0).hsl();
+  },
   get statusBarColor() {
     return this.primary700;
   },

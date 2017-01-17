@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { ActivityIndicator } from 'react-native';
 
 const styles = {
@@ -7,16 +7,12 @@ const styles = {
   },
 };
 
-class Loading extends Component {
-  render() {
-    return (
-      <ActivityIndicator
-        animating
-        size="large"
-        style={styles.indicator}
-      />
-    );
-  }
-}
+const Loading = () => (
+  <ActivityIndicator
+    animating
+    size="large"
+    style={styles.indicator}
+  />
+);
 
 export default Loading;
