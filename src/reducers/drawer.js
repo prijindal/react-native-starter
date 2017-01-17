@@ -1,5 +1,4 @@
-
-import type { Action } from '../actions/types';
+import { createReducer } from 'reduxsauce';
 import { OPEN_DRAWER, CLOSE_DRAWER } from '../actions/drawer';
 
 export type State = {
@@ -7,25 +6,24 @@ export type State = {
     drawerDisabled: boolean
 }
 
-const initialState = {
+const INITIAL_STATE = {
   drawerState: 'closed',
   drawerDisabled: true,
 };
 
-export default function (state:State = initialState, action:Action): State {
-  if (action.type === OPEN_DRAWER) {
-    return {
-      ...state,
-      drawerState: 'opened',
-    };
-  }
+const openDrawer = (state: State = INITIAL_STATE) => ({
+  ...state,
+  drawerState: 'opened',
+});
 
-  if (action.type === CLOSE_DRAWER) {
-    return {
-      ...state,
-      drawerState: 'closed',
-    };
-  }
+const closeDrawer = (state: State = INITIAL_STATE) => ({
+  ...state,
+  drawerState: 'closed',
+});
 
-  return state;
-}
+const HANDLERS = {
+  [OPEN_DRAWER]: openDrawer,
+  [CLOSE_DRAWER]: closeDrawer,
+};
+
+export default createReducer(INITIAL_STATE, HANDLERS);

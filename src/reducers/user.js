@@ -1,4 +1,4 @@
-
+import { createReducer } from 'reduxsauce';
 import type { Action } from '../actions/types';
 import { SET_USER } from '../actions/user';
 
@@ -6,16 +6,17 @@ export type State = {
     name: string
 }
 
-const initialState = {
+const INITIAL_STATE = {
   name: '',
 };
 
-export default function (state:State = initialState, action:Action): State {
-  if (action.type === SET_USER) {
-    return {
-      ...state,
-      name: action.payload,
-    };
-  }
-  return state;
-}
+const setUser = (state: State = INITIAL_STATE, action: Action) => ({
+  ...state,
+  name: action.payload,
+});
+
+const HANDLERS = {
+  [SET_USER]: setUser,
+};
+
+export default createReducer(INITIAL_STATE, HANDLERS);

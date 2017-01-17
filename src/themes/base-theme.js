@@ -8,7 +8,7 @@ export default {
     return this.primary500;
   },
   get transparent() {
-    return color(this.primary700).alpha(0).hsl();
+    return color(this.darkText).alpha(0.1).hsl();
   },
   get statusBarColor() {
     return this.primary700;
