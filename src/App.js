@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import CodePush from 'react-native-code-push';
 
-import AppNavigator from './AppNavigator';
+import AppNavigator from './components/AppNavigator';
 
 class App extends Component {
   state = {
