@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 
+import theme from '../../themes/base-theme';
+
 const styles = {
   container: {
-    backgroundColor: '#ff0',
+    backgroundColor: theme.primary100,
     flex: 1,
   },
 };

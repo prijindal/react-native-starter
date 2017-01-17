@@ -5,7 +5,7 @@ import { StatusBar } from 'react-native';
 
 import Router from '../Router';
 import SideBar from '../SideBar';
-import { statusBarColor } from '../../themes/base-theme';
+import theme from '../../themes/base-theme';
 
 class AppNavigator extends Component {
   static propTypes = {
@@ -44,13 +44,9 @@ class AppNavigator extends Component {
         openDrawerOffset={0.2} // 20% gap on the right side of drawer
         panCloseMask={0.2}
         captureGestures
-        tweenHandler={ratio => ({
-          drawer: { shadowRadius: ratio < 0.2 ? ratio * 5 * 5 : 5 },
-          main: { opacity: (2 - ratio) / 2 },
-        })}
       >
         <StatusBar
-          backgroundColor={statusBarColor}
+          backgroundColor={theme.statusBarColor}
           barStyle="default"
         />
         <NavigationProvider router={Router}>

@@ -2,9 +2,12 @@ import React, { Component, PropTypes } from 'react';
 import { View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+import theme from '../../themes/base-theme';
+
 const styles = {
   toolbar: {
     height: 56,
+    backgroundColor: theme.toolbarDefaultBg,
   },
 };
 
@@ -39,6 +42,7 @@ class Layout extends Component {
       <View>
         <Icon.ToolbarAndroid
           style={styles.toolbar}
+          titleColor={theme.whiteText}
           {...toolbarProps}
         />
         {this.props.children}
