@@ -13,7 +13,9 @@ const styles = {
 
 class Home extends Component {
   static propTypes = {
-    navigator: PropTypes.shape().isRequired,
+    navigator: PropTypes.shape({
+      push: PropTypes.func,
+    }).isRequired,
   }
 
   state = {
@@ -30,6 +32,14 @@ class Home extends Component {
         }),
       3000,
     );
+  }
+
+  onActionSelected = (position) => {
+    if (position === 0) {
+      this.props.navigator.push('notifications');
+    } else if (position === 1) {
+      this.props.navigator.push('login');
+    }
   }
 
   getActions() {
@@ -53,6 +63,7 @@ class Home extends Component {
       <Layout
         title="Home"
         actions={this.getActions()}
+        onActionSelected={this.onActionSelected}
         navigator={this.props.navigator}
       >
         {loading ?

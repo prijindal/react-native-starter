@@ -3,7 +3,7 @@ import type { Action } from '../actions/types';
 import { SET_USER } from '../actions/user';
 
 export type State = {
-    name: string
+  name: string
 }
 
 const INITIAL_STATE = {

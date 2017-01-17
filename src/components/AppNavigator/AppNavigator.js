@@ -21,9 +21,13 @@ const styles = {
 };
 
 class AppNavigator extends Component {
+  static defaultProps = {
+    drawerState: 'closed',
+  }
+
   static propTypes = {
     drawerState: PropTypes.string,
-    closeDrawer: React.PropTypes.func,
+    closeDrawer: React.PropTypes.func.isRequired,
   }
 
   componentDidUpdate() {
