@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { View } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { ToolbarAndroid } from 'react-native-vector-icons/MaterialIcons';
 
 import theme from '../../themes/base-theme';
 
@@ -14,6 +14,8 @@ const styles = {
 class Layout extends Component {
   static defaultProps = {
     enableBackButton: false,
+    title: 'StarterKit',
+    subtitle: '',
   }
 
   static propTypes = {
@@ -21,8 +23,10 @@ class Layout extends Component {
     navigator: PropTypes.shape({
       pop: PropTypes.func,
     }).isRequired,
-    children: PropTypes.element.isRequired,
+    children: PropTypes.node.isRequired,
     enableBackButton: PropTypes.bool,
+    title: PropTypes.string,
+    subtitle: PropTypes.string,
   }
 
   pop = () => {
@@ -40,9 +44,12 @@ class Layout extends Component {
     }
     return (
       <View>
-        <Icon.ToolbarAndroid
+        <ToolbarAndroid
           style={styles.toolbar}
-          titleColor={theme.whiteText}
+          title={this.props.title}
+          subtitle={this.props.subtitle}
+          titleColor={theme.primaryWhiteText}
+          subtitleColor={theme.secondaryWhiteText}
           {...toolbarProps}
         />
         {this.props.children}
