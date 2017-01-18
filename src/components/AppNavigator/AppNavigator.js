@@ -1,24 +1,10 @@
 import React, { Component, PropTypes } from 'react';
-import Drawer from 'react-native-drawer';
 import { NavigationProvider, StackNavigation } from '@exponent/ex-navigation';
-import { StatusBar } from 'react-native';
+import { StatusBar, DrawerLayoutAndroid, Dimensions } from 'react-native';
 
 import Router from '../Router';
 import SideBar from '../SideBar';
 import theme from '../../themes/base-theme';
-
-const styles = {
-  drawerStyles: {
-    drawer: {
-      shadowColor: '#000000',
-      shadowOpacity: 0.8,
-      shadowRadius: 3,
-    },
-    main: {
-      paddingLeft: 3,
-    },
-  },
-};
 
 class AppNavigator extends Component {
   static defaultProps = {
@@ -27,7 +13,8 @@ class AppNavigator extends Component {
 
   static propTypes = {
     drawerState: PropTypes.string,
-    closeDrawer: React.PropTypes.func.isRequired,
+    closeDrawer: PropTypes.func.isRequired,
+    openDrawer: PropTypes.func.isRequired,
   }
 
   componentDidUpdate() {
@@ -36,50 +23,31 @@ class AppNavigator extends Component {
     }
 
     if (this.props.drawerState === 'closed') {
-      this._drawer.close();
+      this._drawer.closeDrawer();
     }
   }
 
   openDrawer() {
-    this._drawer.open();
+    // console.log(this._drawer.openDrawer());
+    this._drawer.openDrawer();
   }
 
-  closeDrawer = () => {
-    if (this.props.drawerState === 'opened') {
-      this.props.closeDrawer();
-    }
-  }
-
-  openDrawerOffset({ width }) {
+  drawerWidth = () => {
+    const { width } = Dimensions.get('window');
     if (width - 56 > 320) {
-      return width - 320;
+      return 320;
     }
-    return 56;
+    return width - 56;
   }
 
   render() {
     return (
-      <Drawer
+      <DrawerLayoutAndroid
         ref={(ref) => { this._drawer = ref; }}
-        type="overlay"
-        content={<SideBar />}
-        tapToClose
-        acceptPan
-        onClose={this.closeDrawer}
-        openDrawerOffset={this.openDrawerOffset} // 20% gap on the right side of drawer
-        panCloseMask={0.2}
-        captureGestures
-        styles={styles.drawerStyles}
-        tweenHandler={ratio => ({
-          main: {
-            backgroundColor: '#000',
-            opacity: (2 - ratio) / 2,
-          },
-          mainOverlay: {
-            backgroundColor: '#000000',
-            opacity: ratio * 1.1,
-          },
-        })}
+        renderNavigationView={() => <SideBar />}
+        drawerWidth={this.drawerWidth()}
+        onDrawerClose={this.props.closeDrawer}
+        onDrawerOpen={this.props.openDrawer}
       >
         <StatusBar
           animated
@@ -89,7 +57,7 @@ class AppNavigator extends Component {
         <NavigationProvider router={Router}>
           <StackNavigation initialRoute={Router.getRoute('home')} />
         </NavigationProvider>
-      </Drawer>
+      </DrawerLayoutAndroid>
     );
   }
 }
