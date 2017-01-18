@@ -1,21 +1,26 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Button } from 'react-native';
+import { View, TextInput } from 'react-native';
+import TextInputLayout from 'react-native-text-input-layout';
 
 import Layout from '../Layout';
-// import Loading from '../Loading';
-// import theme from '../../themes/base-theme';
+import Button from '../Button';
+import theme from '../../themes/base-theme';
 
 const styles = {
   container: {
-    flexDirection: 'row',
+    marginHorizontal: 8,
     alignItems: 'stretch',
     justifyContent: 'center',
   },
-  button: {
+  textInputContainer: {
     marginTop: 8,
-    marginHorizontal: 8,
-    flex: 1,
-    height: 48,
+  },
+  textInput: {
+    fontSize: 18,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
   },
 };
 
@@ -44,11 +49,24 @@ class Login extends Component {
         navigator={this.props.navigator}
       >
         <View style={styles.container}>
-          <Button
-            title="Sign In"
-            style={styles.button}
-            onPress={this.signIn}
-          />
+          <TextInputLayout style={styles.textInputContainer}>
+            <TextInput
+              autoCapitalize="words"
+              style={styles.textInput}
+              placeholder="Name"
+              onChangeText={name => this.setState({ name })}
+            />
+          </TextInputLayout>
+          <View style={styles.buttonContainer}>
+            <Button
+              textColor={theme.whiteText}
+              disabled={this.state.name === ''}
+              backgroundColor={this.state.name ? theme.primary500 : theme.primary100}
+              onPress={this.signIn}
+            >
+              SIGN IN
+            </Button>
+          </View>
         </View>
       </Layout>
     );

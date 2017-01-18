@@ -25,6 +25,7 @@
 		"react-native-drawer": "^2.3.0",
 		"react-native-elements": "^0.9.2",
 		"react-native-fs": "^2.1.0-rc.1",
+		"react-native-text-input-layout": "https://github.com/dantman/react-native-text-input-layout",
 		"react-native-vector-icons": "^4.0.0",
 		"react-redux": "^5.0.2",
 		"redux": "^3.6.0",

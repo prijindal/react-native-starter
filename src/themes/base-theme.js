@@ -26,7 +26,7 @@ export default {
   get dividerWhite() {
     return color(this.whiteText).alpha(0.12).hsl();
   },
-  darkText: '#000',
+  darkText: '#000000',
   get primaryDarkText() {
     return color(this.darkText).alpha(0.87).hsl();
   },

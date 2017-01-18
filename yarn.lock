@@ -3897,6 +3897,10 @@ react-native-tab-view@0.0.42:
   version "0.0.42"
   resolved "https://registry.yarnpkg.com/react-native-tab-view/-/react-native-tab-view-0.0.42.tgz#abaeda8e7ab856db98c09709d3d82d2a08b94564"
 
+"react-native-text-input-layout@https://github.com/dantman/react-native-text-input-layout":
+  version "0.0.5"
+  resolved "https://github.com/dantman/react-native-text-input-layout#35bc761bf36b7643e9d7830ebadf4e37393d3696"
+
 react-native-vector-icons@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/react-native-vector-icons/-/react-native-vector-icons-4.0.0.tgz#6a2f8f4c6ace613aed7748cd530809283e5b1538"
