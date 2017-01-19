@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, TouchableNativeFeedback, Text } from 'react-native';
+import { TouchableNativeFeedback, Text } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
 import theme from '../../themes/base-theme';
@@ -41,38 +41,30 @@ class Button extends Component {
       disabled,
     } = this.props;
     const { raised } = this.state;
-    const element = (
-      <Animatable.View
-        transition={['backgroundColor', 'elevation']}
-        style={
-        [
-          styles.button,
-          {
-            backgroundColor: raised ? pressedBackgroundColor : backgroundColor,
-            elevation: raised ? 6 : 2,
-          },
-        ]
-        }
-      >
-        <Text style={[styles.buttonText, { color: textColor }]}>{children}</Text>
-      </Animatable.View>
-    );
-    if (disabled) {
-      return (
-        <View style={styles.buttonOpacity}>
-          {element}
-        </View>
-      );
-    }
     return (
       <TouchableNativeFeedback
-        background={TouchableNativeFeedback.Ripple(theme.rippleWhiteColor, false)}
+        useForeground
+        disabled={disabled}
+        background={TouchableNativeFeedback.Ripple(theme.rippleWhiteColor, true)}
         style={styles.buttonOpacity}
         onPress={onPress}
         onPressIn={() => this.setState({ raised: true })}
         onPressOut={() => this.setState({ raised: false })}
       >
-        {element}
+        <Animatable.View
+          transition={['backgroundColor', 'elevation']}
+          style={
+          [
+            styles.button,
+            {
+              backgroundColor: raised ? pressedBackgroundColor : backgroundColor,
+              elevation: raised ? 6 : 2,
+            },
+          ]
+          }
+        >
+          <Text style={[styles.buttonText, { color: textColor }]}>{children}</Text>
+        </Animatable.View>
       </TouchableNativeFeedback>
     );
   }

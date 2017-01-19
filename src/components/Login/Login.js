@@ -1,6 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import { View, TextInput } from 'react-native';
+import { View, TextInput, Keyboard } from 'react-native';
 import TextInputLayout from 'react-native-text-input-layout';
+import { NavigationStyles } from '@exponent/ex-navigation';
+
+import Router from '../Router';
 
 import Layout from '../Layout';
 import Button from '../Button';
@@ -27,33 +30,50 @@ const styles = {
 class Login extends Component {
   static propTypes = {
     navigator: PropTypes.shape({
-      push: PropTypes.func,
+      immediatelyResetStack: PropTypes.func,
     }).isRequired,
     setUser: PropTypes.func.isRequired,
+    user: PropTypes.shape({
+      name: PropTypes.string,
+    }).isRequired,
   }
 
+  static route = {
+    styles: {
+      ...NavigationStyles.FloatVertical,
+    },
+  };
+
   state = {
-    name: '',
+    name: this.props.user.name,
+  }
+
+  componentDidMount() {
+    this.nameInput.focus();
   }
 
   signIn = () => {
+    this.props.navigator.immediatelyResetStack([Router.getRoute('home')], 0);
     this.props.setUser(this.state.name);
-    this.props.navigator.push('home');
+    Keyboard.dismiss();
   }
 
   render() {
     return (
       <Layout
         enableBackButton
+        onIconClicked={Keyboard.dismiss}
         title="Login"
         navigator={this.props.navigator}
       >
         <View style={styles.container}>
           <TextInputLayout style={styles.textInputContainer}>
             <TextInput
+              ref={(c) => { this.nameInput = c; }}
               autoCapitalize="words"
               style={styles.textInput}
               placeholder="Name"
+              defaultValue={this.state.name}
               onChangeText={name => this.setState({ name })}
             />
           </TextInputLayout>

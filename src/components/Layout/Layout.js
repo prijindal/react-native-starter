@@ -8,10 +8,6 @@ const styles = {
   container: {
     // marginTop: 24,
   },
-  statusbar: {
-    height: 24,
-    backgroundColor: theme.statusBarColor,
-  },
   toolbar: {
     height: 56,
     backgroundColor: theme.toolbarDefaultBg,
@@ -25,6 +21,7 @@ class Layout extends Component {
     subtitle: '',
     actions: [],
     onActionSelected: () => {},
+    onIconClicked: () => {},
   }
 
   static propTypes = {
@@ -40,15 +37,22 @@ class Layout extends Component {
       PropTypes.shape({}),
     ),
     onActionSelected: PropTypes.func,
+    onIconClicked: PropTypes.func,
   }
 
   pop = () => {
     this.props.navigator.pop();
+    this.props.onIconClicked();
+  }
+
+  openDrawer = () => {
+    this.props.openDrawer();
+    this.props.onIconClicked();
   }
 
   render() {
     const toolbarProps = {
-      onIconClicked: this.props.openDrawer,
+      onIconClicked: this.openDrawer,
       navIconName: 'menu',
     };
     if (this.props.enableBackButton) {
@@ -57,7 +61,6 @@ class Layout extends Component {
     }
     return (
       <View style={styles.container}>
-        <View style={styles.statusbar} />
         <ToolbarAndroid
           style={styles.toolbar}
           title={this.props.title}

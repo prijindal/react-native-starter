@@ -16,45 +16,82 @@ class Home extends Component {
     navigator: PropTypes.shape({
       push: PropTypes.func,
     }).isRequired,
+    user: PropTypes.shape({
+      name: PropTypes.string,
+    }).isRequired,
   }
 
   state = {
     loading: true,
+    actions: [],
     list: [],
+  }
+
+  componentWillMount() {
+    this._mounted = true;
+    this.updateActions(this.props);
   }
 
   componentDidMount() {
     setTimeout(
-      () =>
+      () => {
+        if (!this._mounted) return;
         this.setState({
           loading: false,
           list: [1, 2, 3],
-        }),
+        });
+      },
       3000,
     );
   }
 
+  componentWillUnmount() {
+    this._mounted = false;
+  }
+
   onActionSelected = (position) => {
-    if (position === 0) {
+    if (!this.props.user.name) {
+      if (position === 0) {
+        this.props.navigator.push('login');
+      }
+    } else if (position === 0) {
       this.props.navigator.push('notifications');
     } else if (position === 1) {
-      this.props.navigator.push('login');
+      this.props.navigator.push('profile');
     }
   }
 
-  getActions() {
-    return [
-      {
-        title: 'Notifications',
-        iconName: 'notifications',
-        show: 'always',
-      },
-      {
-        title: 'Login',
-        iconName: 'person',
-        show: 'always',
-      },
-    ];
+  updateActions(props) {
+    let actions = [];
+    if (props.user.name) {
+      actions = [
+        ...actions,
+        {
+          title: 'Notifications',
+          iconName: 'notifications',
+          show: 'always',
+        },
+        {
+          title: 'Logout',
+          iconName: 'person-outline',
+          show: 'always',
+        },
+      ];
+    } else {
+      actions = [
+        ...actions,
+        {
+          title: 'Login',
+          iconName: 'person',
+          show: 'always',
+        },
+      ];
+    }
+    if (this._mounted) {
+      this.setState({
+        actions,
+      });
+    }
   }
 
   render() {
@@ -62,7 +99,7 @@ class Home extends Component {
     return (
       <Layout
         title="Home"
-        actions={this.getActions()}
+        actions={this.state.actions}
         onActionSelected={this.onActionSelected}
         navigator={this.props.navigator}
       >

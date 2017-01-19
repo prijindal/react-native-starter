@@ -1,10 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import { NavigationProvider, StackNavigation } from '@exponent/ex-navigation';
-import { StatusBar, DrawerLayoutAndroid, Dimensions } from 'react-native';
+import { StatusBar, DrawerLayoutAndroid, Dimensions, View } from 'react-native';
 
 import Router from '../Router';
 import SideBar from '../SideBar';
 import theme from '../../themes/base-theme';
+
+const styles = {
+  statusbar: {
+    height: 24,
+    backgroundColor: theme.statusBarColor,
+  },
+};
 
 class AppNavigator extends Component {
   static defaultProps = {
@@ -55,6 +62,7 @@ class AppNavigator extends Component {
           backgroundColor={theme.transparent}
         />
         <NavigationProvider router={Router}>
+          <View style={styles.statusbar} />
           <StackNavigation initialRoute={Router.getRoute('home')} />
         </NavigationProvider>
       </DrawerLayoutAndroid>
