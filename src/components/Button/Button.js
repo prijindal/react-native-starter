@@ -66,6 +66,7 @@ class Button extends Component {
     }
     return (
       <TouchableNativeFeedback
+        background={TouchableNativeFeedback.Ripple(theme.rippleWhiteColor, false)}
         style={styles.buttonOpacity}
         onPress={onPress}
         onPressIn={() => this.setState({ raised: true })}
