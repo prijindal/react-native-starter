@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StatusBar } from 'react-native';
+import { View } from 'react-native';
 import theme from '../../themes/base-theme';
 
 const styles = {
@@ -9,15 +9,10 @@ const styles = {
   },
 };
 
-const StatusBarView = () => (
+const StatusBar = () => (
   <View>
-    <StatusBar
-      animated
-      translucent
-      backgroundColor={theme.transparent}
-    />
     <View style={styles.statusbar} />
   </View>
 );
 
-export default StatusBarView;
+export default StatusBar;

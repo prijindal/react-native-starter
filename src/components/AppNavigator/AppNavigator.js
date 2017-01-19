@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { NavigationProvider, StackNavigation } from '@exponent/ex-navigation';
-import { DrawerLayoutAndroid, Dimensions } from 'react-native';
+import { DrawerLayoutAndroid, Dimensions, BackAndroid } from 'react-native';
 
 import StatusBar from '../StatusBar';
 
@@ -26,6 +26,21 @@ class AppNavigator extends Component {
     if (this.props.drawerState === 'closed') {
       this._drawer.closeDrawer();
     }
+    this.registerBackButton();
+  }
+
+  componentWillUnmount() {
+    BackAndroid.removeEventListener('hardwareBackPress');
+  }
+
+  registerBackButton() {
+    BackAndroid.addEventListener('hardwareBackPress', () => {
+      if (this.props.drawerState === 'opened') {
+        this._drawer.closeDrawer();
+        return true;
+      }
+      return false;
+    });
   }
 
   openDrawer() {

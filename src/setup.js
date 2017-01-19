@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-// import SplashScreen from 'react-native-splash-screen'
 
 import SplashScreen from './components/SplashScreen';
 import App from './App';
