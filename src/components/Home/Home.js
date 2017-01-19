@@ -45,6 +45,12 @@ class Home extends Component {
     );
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this._mounted) {
+      this.updateActions(nextProps);
+    }
+  }
+
   componentWillUnmount() {
     this._mounted = false;
   }
