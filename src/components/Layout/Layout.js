@@ -18,10 +18,12 @@ class Layout extends Component {
   static defaultProps = {
     enableBackButton: false,
     title: 'StarterKit',
+    titleColor: theme.whiteText,
     subtitle: '',
     actions: [],
     onActionSelected: () => {},
     onIconClicked: () => {},
+    toolbarStyle: {},
   }
 
   static propTypes = {
@@ -31,7 +33,9 @@ class Layout extends Component {
     }).isRequired,
     children: PropTypes.node.isRequired,
     enableBackButton: PropTypes.bool,
+    toolbarStyle: PropTypes.shape(),
     title: PropTypes.string,
+    titleColor: PropTypes.string,
     subtitle: PropTypes.string,
     actions: PropTypes.arrayOf(
       PropTypes.shape({}),
@@ -62,12 +66,12 @@ class Layout extends Component {
     return (
       <View style={styles.container}>
         <ToolbarAndroid
-          style={styles.toolbar}
+          style={[styles.toolbar, this.props.toolbarStyle]}
           title={this.props.title}
           subtitle={this.props.subtitle}
           actions={this.props.actions}
           onActionSelected={this.props.onActionSelected}
-          titleColor={theme.primaryWhiteText}
+          titleColor={this.props.titleColor}
           subtitleColor={theme.secondaryWhiteText}
           {...toolbarProps}
         />

@@ -5,7 +5,7 @@ import theme from '../../themes/base-theme';
 const styles = {
   statusbar: {
     height: 24,
-    backgroundColor: theme.statusBarColor,
+    backgroundColor: theme.primary500,
   },
 };
 

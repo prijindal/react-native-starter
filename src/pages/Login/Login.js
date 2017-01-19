@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { View, TextInput, Keyboard } from 'react-native';
 import TextInputLayout from 'react-native-text-input-layout';
-import { NavigationStyles } from '@exponent/ex-navigation';
 
 import Router from '../Router';
 
@@ -37,12 +36,6 @@ class Login extends Component {
       name: PropTypes.string,
     }).isRequired,
   }
-
-  static route = {
-    styles: {
-      ...NavigationStyles.FloatVertical,
-    },
-  };
 
   state = {
     name: this.props.user.name,

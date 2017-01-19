@@ -1,9 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import { NavigationProvider, StackNavigation } from '@exponent/ex-navigation';
+import { NavigationStyles, NavigationProvider, StackNavigation } from '@exponent/ex-navigation';
 import { DrawerLayoutAndroid, Dimensions, BackAndroid } from 'react-native';
 
 import StatusBar from '../StatusBar';
-
 import Router from '../../pages/Router';
 import SideBar from '../SideBar';
 
@@ -18,6 +17,10 @@ class AppNavigator extends Component {
     openDrawer: PropTypes.func.isRequired,
   }
 
+  componentDidMount() {
+    this.registerBackButton();
+  }
+
   componentDidUpdate() {
     if (this.props.drawerState === 'opened') {
       this.openDrawer();
@@ -26,7 +29,6 @@ class AppNavigator extends Component {
     if (this.props.drawerState === 'closed') {
       this._drawer.closeDrawer();
     }
-    this.registerBackButton();
   }
 
   componentWillUnmount() {
@@ -67,7 +69,14 @@ class AppNavigator extends Component {
       >
         <NavigationProvider router={Router}>
           <StatusBar />
-          <StackNavigation initialRoute={Router.getRoute('home')} />
+          <StackNavigation
+            defaultRouteConfig={{
+              styles: {
+                ...NavigationStyles.FloatVertical,
+              },
+            }}
+            initialRoute={Router.getRoute('home')}
+          />
         </NavigationProvider>
       </DrawerLayoutAndroid>
     );
