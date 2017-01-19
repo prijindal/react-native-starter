@@ -5,8 +5,8 @@ import { NavigationStyles } from '@exponent/ex-navigation';
 
 import Router from '../Router';
 
-import Layout from '../Layout';
-import Button from '../Button';
+import Layout from '../../components/Layout';
+import Button from '../../components/Button';
 import theme from '../../themes/base-theme';
 
 const styles = {

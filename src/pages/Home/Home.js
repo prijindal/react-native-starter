@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { Text } from 'react-native';
 
-import Layout from '../Layout';
-import Loading from '../Loading';
+import Layout from '../../components/Layout';
+import Loading from '../../components/Loading';
 import theme from '../../themes/base-theme';
 
 const styles = {

@@ -4,7 +4,7 @@ import { DrawerLayoutAndroid, Dimensions, BackAndroid } from 'react-native';
 
 import StatusBar from '../StatusBar';
 
-import Router from '../Router';
+import Router from '../../pages/Router';
 import SideBar from '../SideBar';
 
 class AppNavigator extends Component {
