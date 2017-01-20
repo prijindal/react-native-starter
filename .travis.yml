@@ -27,3 +27,10 @@ script:
   - cd android && ./gradlew copyDownloadableDepsToLibs && cd ..
   - ./buck/bin build android/app
   # - if [[ "$NODE_VERSION" = 7 ]]; then sh upload.sh; fi
+
+notifications:
+  email:
+    recipients:
+      - priyanshujindal1995@gmail.com
+    on_failure: change
+    on_success: change
