@@ -9,15 +9,13 @@ env:
 before_install: #1.1
 - nvm install ${NODE_VERSION}
 - node --version
-- git clone https://github.com/facebook/buck.git
+# - git clone https://github.com/facebook/buck.git
 install: #1.2
 - npm install
 android: #1.3
   components:
-  - build-tools-25.0.3
-  - build-tools-25.0.2
+  - build-tools-23.0.3
   - build-tools-23.0.1
-  - android-25
   - android-23
   - extra-android-m2repository
   - extra-google-google_play_services
@@ -25,8 +23,8 @@ android: #1.3
   - addon-google_apis-google-16
 
 script:
-  - npm run lint:all
-  - npm test
+  # - npm run lint:all
+  # - npm test
   - cd android && ./gradlew copyDownloadableDepsToLibs && cd ..
   - ./bin/buck build android/app
 
