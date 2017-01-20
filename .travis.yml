@@ -1,5 +1,5 @@
 language: android
-# jdk: oraclejdk8
+jdk: oraclejdk8
 
 env:
   matrix:
@@ -15,9 +15,9 @@ install: #1.2
 - npm install
 android: #1.3
   components:
-  # - tools
-  # - platform-tools
-  # - tools
+  - tools
+  - platform-tools
+  - tools
   # - build-tools-25.0.3
   # - build-tools-25.0.1
   # - build-tools-23.0.3
