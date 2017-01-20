@@ -1,13 +1,14 @@
 import React, { Component, PropTypes } from 'react';
-import { Text } from 'react-native';
+import { View, ScrollView } from 'react-native';
 
 import Layout from '../../components/Layout';
-import Loading from '../../components/Loading';
+import ListItem from '../../components/ListItem';
 import theme from '../../themes/base-theme';
+import mockData from './mockData';
 
 const styles = {
-  text: {
-    color: theme.primaryDarkText,
+  view: {
+    backgroundColor: theme.dividerDarkText,
   },
 };
 
@@ -22,7 +23,7 @@ class Home extends Component {
   }
 
   state = {
-    loading: true,
+    loading: false,
     actions: [],
     list: [],
   }
@@ -38,10 +39,10 @@ class Home extends Component {
         if (!this._mounted) return;
         this.setState({
           loading: false,
-          list: [1, 2, 3],
+          list: mockData(30),
         });
       },
-      3000,
+      0,
     );
   }
 
@@ -100,24 +101,32 @@ class Home extends Component {
     }
   }
 
+  openUser(user) {
+    this.props.navigator.push('user', { user });
+  }
+
   render() {
-    const { loading, list } = this.state;
     return (
-      <Layout
-        title="Home"
-        actions={this.state.actions}
-        onActionSelected={this.onActionSelected}
-        navigator={this.props.navigator}
-      >
-        {loading ?
-          <Loading /> :
-          list.map(item =>
-            <Text
-              style={styles.text}
-              key={item}
-            >{item}</Text>,
-        )}
-      </Layout>
+      <View style={styles.view}>
+        <Layout
+          title="Home"
+          actions={this.state.actions}
+          onActionSelected={this.onActionSelected}
+          navigator={this.props.navigator}
+        />
+        <ScrollView style={styles.list}>
+          {
+            this.state.list.map((item, idx) =>
+              <ListItem
+                item={item}
+                idx={idx}
+                length={this.state.list.length}
+                onPress={() => this.openUser(item)}
+                key={item.id}
+              />,
+          )}
+        </ScrollView>
+      </View>
     );
   }
 }

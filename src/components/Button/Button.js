@@ -58,7 +58,7 @@ class Button extends Component {
             styles.button,
             {
               backgroundColor: raised ? pressedBackgroundColor : backgroundColor,
-              elevation: raised ? 6 : 2,
+              elevation: raised ? 8 : 2,
             },
           ]
           }

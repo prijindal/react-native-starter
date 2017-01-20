@@ -12,6 +12,7 @@
 	"dependencies": {
 		"@exponent/ex-navigation": "^2.7.1",
 		"color": "^1.0.3",
+		"faker": "^3.1.0",
 		"jimp": "^0.2.27",
 		"next-frame": "^0.2.3",
 		"react": "~15.4.0-rc.4",
@@ -21,6 +22,7 @@
 		"react-native-elements": "^0.9.2",
 		"react-native-fs": "^2.1.0-rc.1",
 		"react-native-text-input-layout": "https://github.com/dantman/react-native-text-input-layout",
+		"react-native-uuid": "^1.4.9",
 		"react-native-vector-icons": "^4.0.0",
 		"react-redux": "^5.0.2",
 		"redux": "^3.6.0",

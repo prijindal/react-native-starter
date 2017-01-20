@@ -33,4 +33,13 @@ export default {
   get primaryDarkText() {
     return color(this.darkText).alpha(0.87).hsl();
   },
+  get secondaryDarkText() {
+    return color(this.darkText).alpha(0.54).hsl();
+  },
+  get hintDarkText() {
+    return color(this.darkText).alpha(0.38).hsl();
+  },
+  get dividerDarkText() {
+    return color(this.darkText).alpha(0.12).hsl();
+  },
 };

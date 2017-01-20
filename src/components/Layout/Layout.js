@@ -11,6 +11,7 @@ const styles = {
   toolbar: {
     height: 56,
     backgroundColor: theme.toolbarDefaultBg,
+    elevation: 4,
   },
 };
 
@@ -18,6 +19,7 @@ class Layout extends Component {
   static defaultProps = {
     enableBackButton: false,
     title: 'StarterKit',
+    children: <View />,
     titleColor: theme.whiteText,
     subtitle: '',
     actions: [],
@@ -31,7 +33,7 @@ class Layout extends Component {
     navigator: PropTypes.shape({
       pop: PropTypes.func,
     }).isRequired,
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node,
     enableBackButton: PropTypes.bool,
     toolbarStyle: PropTypes.shape(),
     title: PropTypes.string,
