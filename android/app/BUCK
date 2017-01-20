@@ -41,6 +41,7 @@ android_library(
     ':all-libs',
     ':build_config',
     ':res',
+    ':assets',
   ],
 )
 
@@ -52,6 +53,12 @@ android_build_config(
 android_resource(
   name = 'res',
   res = 'src/main/res',
+  assets = 'src/main/assets',
+  package = 'com.starterapp',
+)
+
+android_resource(
+  name = 'assets',
   package = 'com.starterapp',
 )
 
