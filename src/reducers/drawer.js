@@ -1,4 +1,5 @@
 import { createReducer } from 'reduxsauce';
+import Immutable from 'seamless-immutable';
 import { OPEN_DRAWER, CLOSE_DRAWER } from '../actions/drawer';
 
 export type State = {
@@ -6,10 +7,10 @@ export type State = {
     drawerDisabled: boolean
 }
 
-const INITIAL_STATE = {
+const INITIAL_STATE = Immutable({
   drawerState: 'closed',
   drawerDisabled: true,
-};
+});
 
 const openDrawer = (state: State = INITIAL_STATE) => ({
   ...state,

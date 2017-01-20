@@ -1,4 +1,5 @@
 import { createReducer } from 'reduxsauce';
+import Immutable from 'seamless-immutable';
 import type { Action } from '../actions/types';
 import { SET_USER } from '../actions/user';
 
@@ -6,9 +7,9 @@ export type State = {
   name: string
 }
 
-const INITIAL_STATE = {
+const INITIAL_STATE = Immutable({
   name: '',
-};
+});
 
 const setUser = (state: State = INITIAL_STATE, action: Action) => ({
   ...state,
