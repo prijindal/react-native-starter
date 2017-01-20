@@ -9,7 +9,7 @@ env:
 before_install: #1.1
 - nvm install ${NODE_VERSION}
 - node --version
-- git clone https://github.com/facebook/buck.git
+- git clone https://github.com/facebook/buck.git --depth 1
 install: #1.2
 - npm install
 android: #1.3
@@ -25,10 +25,5 @@ script:
   - npm run lint:all
   - npm test
   - cd android && ./gradlew copyDownloadableDepsToLibs && cd ..
-  - ./bin/buck build android/app
+  - ./buck/bin build android/app
   # - if [[ "$NODE_VERSION" = 7 ]]; then sh upload.sh; fi
-
-cache:
-  directories:
-    - node_modules
-    - /home/travis/.gradle/
