@@ -1,7 +1,8 @@
 import faker from 'faker';
 import uuid from 'react-native-uuid';
 
-export const mockdata = (length = 15) => {
+
+const mockData = (length = 15) => {
   const data = [];
   for (let i = 0; i < length; i += 1) {
     data.push({
@@ -14,4 +15,4 @@ export const mockdata = (length = 15) => {
   return data;
 };
 
-export default mockdata;
+export default mockData;
