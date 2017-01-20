@@ -39,7 +39,6 @@ cache:
     - $HOME/.nvm
     - node_modules
     - buck-out
-    - buck
 
 notifications:
   email:
