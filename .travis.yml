@@ -1,14 +1,8 @@
 language: android
 jdk: oraclejdk8
 
-env:
-  matrix:
-    - NODE_VERSION=7
-    - NODE_VERSION=6
-    - NODE_VERSION=5
-
 before_install: #1.1
-- nvm install ${NODE_VERSION}
+- nvm install 7
 - node --version
 - git clone https://github.com/facebook/buck.git --depth 1
 install: #1.2
