@@ -1,13 +1,16 @@
 language: android
 jdk: oraclejdk8
 
-before_install: #1.1
+before_install:
 - nvm install 7
 - node --version
 - git clone https://github.com/facebook/buck.git --depth 1
-install: #1.2
+
+install:
 - npm install
-android: #1.3
+- cd android && ./gradlew copyDownloadableDepsToLibs && cd ..
+
+android:
   components:
   - tools
   - platform-tools
@@ -25,9 +28,17 @@ android: #1.3
 script:
   - npm run lint:all
   - npm test
-  - cd android && ./gradlew copyDownloadableDepsToLibs && cd ..
-  - ./buck/bin/buck build android/app
   # - if [[ "$NODE_VERSION" = 7 ]]; then sh upload.sh; fi
+
+after_success:
+  - ./buck/bin/buck build android/app
+
+cache:
+  directories:
+    - $HOME/.nvm
+    - node_modules
+    - buck-out
+    - buck
 
 notifications:
   email:
