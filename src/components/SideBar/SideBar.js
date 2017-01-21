@@ -30,11 +30,11 @@ const styles = {
   imageOverlay: {
     backgroundColor: 'hsla(0, 0%, 0%, 0.5)',
     height: 180,
-    paddingLeft: 16,
     paddingTop: 46,
     flex: 1,
   },
   avatar: {
+    marginLeft: 16,
     width: 62,
     height: 62,
     borderRadius: 50,
@@ -52,9 +52,11 @@ const styles = {
   },
   profileInfoContainer: {
     justifyContent: 'space-between',
+    paddingLeft: 16,
     paddingRight: 16,
     flexDirection: 'row',
-    marginTop: 8,
+    paddingTop: 8,
+    paddingBottom: 8,
   },
   downArrowContainer: {
     justifyContent: 'center',
@@ -113,20 +115,20 @@ class SideBar extends Component {
                 style={styles.avatar}
                 source={{ uri: user.avatar }}
               />
-              <View style={styles.profileInfoContainer}>
-                <View style={styles.profileInfo}>
-                  <Text style={styles.name}>{user.name}</Text>
-                  <Text style={styles.email}>{user.email}</Text>
-                </View>
-                <TouchableNativeFeedback onPress={this.toggleDownArrow}>
+              <TouchableNativeFeedback onPress={this.toggleDownArrow}>
+                <View style={styles.profileInfoContainer}>
+                  <View style={styles.profileInfo}>
+                    <Text style={styles.name}>{user.name}</Text>
+                    <Text style={styles.email}>{user.email}</Text>
+                  </View>
                   <View style={styles.downArrowContainer}>
                     <Icon
                       style={styles.downArrow}
                       name={this.state.downArrow ? 'arrow-drop-down' : 'arrow-drop-up'}
                     />
                   </View>
-                </TouchableNativeFeedback>
-              </View>
+                </View>
+              </TouchableNativeFeedback>
             </View>
           </Image>
           {this.state.downArrow ?
