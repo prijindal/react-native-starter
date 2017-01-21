@@ -88,6 +88,7 @@ android {
     buildToolsVersion "25.0.1"
 
     defaultConfig {
+        multiDexEnabled true
         applicationId "com.starterapp"
         minSdkVersion 16
         targetSdkVersion 24
@@ -95,6 +96,20 @@ android {
         versionName "1.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
+        }
+    }
+    signingConfigs {
+        debug {
+            storeFile file(READGIT_DEBUG_STORE_FILE)
+            storePassword READGIT_DEBUG_STORE_PASSWORD
+            keyAlias READGIT_DEBUG_KEY_ALIAS
+            keyPassword READGIT_DEBUG_KEY_PASSWORD
+        }
+        release {
+            storeFile file(READGIT_DEBUG_STORE_FILE)
+            storePassword READGIT_DEBUG_STORE_PASSWORD
+            keyAlias READGIT_DEBUG_KEY_ALIAS
+            keyPassword READGIT_DEBUG_KEY_PASSWORD
         }
     }
     splits {
