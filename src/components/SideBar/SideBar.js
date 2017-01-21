@@ -3,6 +3,7 @@ import { ScrollView, TouchableNativeFeedback, Text, Image, View } from 'react-na
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import MenuItem from '../MenuItem';
+import List from '../List';
 import theme from '../../themes/base-theme';
 
 const user = {
@@ -128,15 +129,42 @@ class SideBar extends Component {
               </View>
             </View>
           </Image>
-          <MenuItem item={{ name: 'Inbox', icon: 'inbox' }} />
-          <MenuItem item={{ name: 'Snoozed', icon: 'access-time' }} />
-          <MenuItem item={{ name: 'Done', icon: 'check' }} />
-          <MenuItem item={{ name: 'Drafts', icon: 'drafts' }} />
-          <MenuItem item={{ name: 'sent', icon: 'send' }} />
-          <MenuItem item={{ name: 'Reminders', icon: 'touch-app' }} />
-          <MenuItem item={{ name: 'Trash', icon: 'delete' }} />
-          <MenuItem item={{ name: 'Saved', icon: 'bookmark' }} />
-          <MenuItem item={{ name: 'Create New', icon: 'add' }} />
+          {this.state.downArrow ?
+            <View>
+              <List>
+                <MenuItem
+                  item={{ name: 'Inbox', icon: 'inbox' }}
+                  iconColor={theme.primary500}
+                  textColor={theme.primary500}
+                />
+                <MenuItem
+                  item={{ name: 'Snoozed', icon: 'access-time' }}
+                  iconColor={theme.accent700}
+                />
+                <MenuItem
+                  item={{ name: 'Done', icon: 'check' }}
+                  iconColor={theme.accent700}
+                />
+              </List>
+              <List>
+                <MenuItem item={{ name: 'Drafts', icon: 'drafts' }} />
+                <MenuItem item={{ name: 'sent', icon: 'send' }} />
+                <MenuItem item={{ name: 'Reminders', icon: 'touch-app' }} />
+                <MenuItem item={{ name: 'Trash', icon: 'delete' }} />
+                <MenuItem item={{ name: 'Spam', icon: 'error' }} />
+              </List>
+              <List>
+                <MenuItem item={{ name: 'Saved', icon: 'bookmark' }} />
+              </List>
+              <List>
+                <MenuItem item={{ name: 'Create New', icon: 'add' }} />
+              </List>
+            </View> :
+            <List noBorder>
+              <MenuItem item={{ name: 'Add Account', icon: 'add' }} />
+              <MenuItem item={{ name: 'Manage Account', icon: 'settings' }} />
+            </List>
+          }
         </ScrollView>
         <View style={styles.fixedView}>
           <MenuItem item={{ name: 'Settings', icon: 'settings' }} />

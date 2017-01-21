@@ -7,7 +7,10 @@
 		"test": "NODE_ENV=production ava",
 		"lint:all": "npm run lint && npm run lint:test",
 		"lint": "eslint -c .eslintrc src/**/*.js",
-		"lint:test": "eslint tests/**/*.js"
+		"lint:test": "eslint tests/**/*.js",
+		"emulator": "emulator -avd NexusS",
+		"intall": "adb install android/app/outputs/apk/android-debug.apk",
+		"intent": "adb shell am start -a android.intent.action.MAIN -n com.starterapp/.MainActivity"
 	},
 	"dependencies": {
 		"@exponent/ex-navigation": "^2.7.1",

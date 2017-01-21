@@ -4,6 +4,10 @@ export default {
   primary100: '#E1BEE7',
   primary500: '#9C27B0',
   primary700: '#7B1FA2',
+  accent100: '#ffe57f',
+  accent200: '#ffd740',
+  accent400: '#ffc400',
+  accent700: '#ffab00',
   get toolbarDefaultBg() {
     return this.primary500;
   },

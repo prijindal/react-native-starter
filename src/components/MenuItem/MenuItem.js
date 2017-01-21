@@ -8,7 +8,7 @@ const styles = {
   view: {
     backgroundColor: theme.whiteText,
     paddingHorizontal: 16,
-    height: 40,
+    height: 48,
     alignItems: 'center',
     flexDirection: 'row',
   },
@@ -16,7 +16,7 @@ const styles = {
     fontSize: 24,
   },
   text: {
-    fontSize: 13,
+    fontSize: 16,
     fontWeight: '500',
     paddingLeft: 32,
     color: theme.primaryDarkText,
@@ -24,19 +24,28 @@ const styles = {
 };
 
 class MenuItem extends Component {
+  static defaultProps = {
+    iconColor: theme.primaryDarkText,
+    textColor: theme.primaryDarkText,
+  }
+
   static propTypes = {
     item: PropTypes.shape({
       name: PropTypes.string,
       icon: PropTypes.string,
     }).isRequired,
+    iconColor: PropTypes.string,
+    textColor: PropTypes.string,
   }
+
   render() {
-    const { name, icon } = this.props.item;
+    const { item, iconColor, textColor } = this.props;
+    const { name, icon } = item;
     return (
       <TouchableNativeFeedback>
         <View style={styles.view}>
-          <Icon name={icon} style={styles.icon} />
-          <Text style={styles.text}>{name}</Text>
+          <Icon name={icon} style={[styles.icon, { color: iconColor }]} />
+          <Text style={[styles.text, { color: textColor }]}>{name}</Text>
         </View>
       </TouchableNativeFeedback>
     );
