@@ -14,6 +14,9 @@ export default {
     return this.primary700;
   },
   whiteText: '#fff',
+  get backgroundText() {
+    return color(this.darkText).alpha(0.08).hsl();
+  },
   get primaryWhiteText() {
     return this.whiteText;
   },

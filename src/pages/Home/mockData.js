@@ -2,7 +2,7 @@ import faker from 'faker';
 import uuid from 'react-native-uuid';
 
 
-const mockData = (length = 15) => {
+const mockList = (length = 15) => {
   const data = [];
   for (let i = 0; i < length; i += 1) {
     data.push({
@@ -14,5 +14,23 @@ const mockData = (length = 15) => {
   }
   return data;
 };
+
+const mockData = () => [
+  {
+    id: 1,
+    name: 'Today',
+    list: mockList(2),
+  },
+  {
+    id: 2,
+    name: 'Yesterday',
+    list: mockList(4),
+  },
+  {
+    id: 3,
+    name: 'This month',
+    list: mockList(),
+  },
+];
 
 export default mockData;

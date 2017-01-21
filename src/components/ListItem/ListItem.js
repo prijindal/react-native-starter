@@ -52,6 +52,7 @@ class ListItem extends Component {
   getBody() {
     const MAX_LENGTH = 80;
     const { body } = this.props.item;
+    if (!body) return '';
     if (body.length > MAX_LENGTH) {
       return body.substr(0, MAX_LENGTH);
     }
@@ -61,8 +62,6 @@ class ListItem extends Component {
   getAdditionalStyles() {
     const { idx, length } = this.props;
     return {
-      marginTop: idx === 0 ? 8 : 0,
-      marginBottom: idx === length - 1 ? 8 : 0,
       borderBottomWidth: idx === length - 1 ? 0 : 1,
     };
   }

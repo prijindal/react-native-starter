@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, Text } from 'react-native';
 
 import Layout from '../../components/Layout';
 import ListItem from '../../components/ListItem';
@@ -9,7 +9,18 @@ import mockData from './mockData';
 
 const styles = {
   view: {
-    backgroundColor: theme.dividerDarkText,
+    backgroundColor: theme.backgroundText,
+  },
+  subheader: {
+    paddingLeft: 16,
+    height: 48,
+    justifyContent: 'center',
+  },
+  subheaderText: {
+    fontSize: 14,
+    color: theme.secondaryDarkText,
+    fontWeight: '900',
+    fontFamily: 'sans-serif-light',
   },
 };
 
@@ -26,7 +37,7 @@ class Home extends Component {
   state = {
     loading: false,
     actions: [],
-    list: [],
+    data: [],
   }
 
   componentWillMount() {
@@ -40,7 +51,7 @@ class Home extends Component {
         if (!this._mounted) return;
         this.setState({
           loading: false,
-          list: mockData(),
+          data: mockData(),
         });
       },
       0,
@@ -116,15 +127,22 @@ class Home extends Component {
           navigator={this.props.navigator}
         />
         <ScrollView style={styles.list}>
-          {
-            this.state.list.map((item, idx) =>
-              <ListItem
-                item={item}
-                idx={idx}
-                length={this.state.list.length}
-                onPress={() => this.openUser(item)}
-                key={item.id}
-              />,
+          {this.state.data.map(({ id, name, list }) =>
+            <View key={id}>
+              <View style={styles.subheader}>
+                <Text style={styles.subheaderText}>{name}</Text>
+              </View>
+              {
+                list.map((item, idx) =>
+                  <ListItem
+                    item={item}
+                    idx={idx}
+                    length={list.length}
+                    onPress={() => this.openUser(item)}
+                    key={item.id}
+                  />,
+              )}
+            </View>,
           )}
         </ScrollView>
       </View>
