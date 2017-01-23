@@ -47,7 +47,7 @@ class App extends Component {
         </View>
       );
     }
-    return <AppNavigator />;
+    return <AppNavigator {...this.props} />;
   }
 }
 

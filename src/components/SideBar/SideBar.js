@@ -6,6 +6,7 @@ import MenuItem from '../MenuItem';
 import List from '../List';
 import theme from '../../themes/base-theme';
 
+
 const user = {
   name: 'Priyanshu Jindal',
   email: 'priyanshujindal1995@gmail.com',
@@ -77,9 +78,10 @@ const styles = {
 
 class SideBar extends Component {
   static propTypes = {
-    user: PropTypes.shape({
-      name: PropTypes.string,
+    navigation: PropTypes.shape({
+      getNavigator: PropTypes.func,
     }).isRequired,
+    closeDrawer: PropTypes.func.isRequired,
   }
 
   state = {
@@ -102,7 +104,13 @@ class SideBar extends Component {
     }));
   }
 
+  openPage = (page) => {
+    this.props.closeDrawer();
+    this.props.navigation.getNavigator('master').push(page);
+  }
+
   render() {
+    // const { user } = this.props;
     return (
       <View onLayout={this.onScrollViewLayout} style={styles.container}>
         <ScrollView>
@@ -169,7 +177,7 @@ class SideBar extends Component {
           }
         </ScrollView>
         <View style={styles.fixedView}>
-          <MenuItem item={{ name: 'Settings', icon: 'settings' }} />
+          <MenuItem onPress={() => this.openPage('settings')} item={{ name: 'Settings', icon: 'settings' }} />
           <MenuItem item={{ name: 'Help and Feedback', icon: 'help' }} />
         </View>
       </View>

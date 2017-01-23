@@ -26,6 +26,9 @@ const styles = {
 
 class Home extends Component {
   static propTypes = {
+    navigation: PropTypes.shape({
+      getNavigator: PropTypes.func,
+    }),
     navigator: PropTypes.shape({
       push: PropTypes.func,
     }).isRequired,
@@ -71,7 +74,7 @@ class Home extends Component {
   onActionSelected = (position) => {
     if (!this.props.user.name) {
       if (position === 0) {
-        this.props.navigator.push('login');
+        this.props.navigation.getNavigator('master').push('login');
       }
     } else if (position === 0) {
       this.props.navigator.push('notifications');

@@ -28,6 +28,7 @@ class MenuItem extends Component {
   static defaultProps = {
     iconColor: theme.primaryDarkText,
     textColor: theme.primaryDarkText,
+    onPress: () => {},
   }
 
   static propTypes = {
@@ -43,13 +44,14 @@ class MenuItem extends Component {
       PropTypes.string,
       PropTypes.object,
     ]),
+    onPress: PropTypes.func,
   }
 
   render() {
-    const { item, iconColor, textColor } = this.props;
+    const { item, iconColor, textColor, onPress } = this.props;
     const { name, icon } = item;
     return (
-      <TouchableNativeFeedback>
+      <TouchableNativeFeedback onPress={onPress}>
         <View style={styles.view}>
           <Icon name={icon} style={[styles.icon, { color: iconColor }]} />
           <Text style={[styles.text, { color: textColor }]}>{name}</Text>

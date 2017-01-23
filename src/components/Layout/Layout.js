@@ -26,6 +26,7 @@ class Layout extends Component {
     onActionSelected: () => {},
     onIconClicked: () => {},
     toolbarStyle: {},
+    navIconName: '',
   }
 
   static propTypes = {
@@ -44,6 +45,7 @@ class Layout extends Component {
     ),
     onActionSelected: PropTypes.func,
     onIconClicked: PropTypes.func,
+    navIconName: PropTypes.string,
   }
 
   pop = () => {
@@ -64,6 +66,9 @@ class Layout extends Component {
     if (this.props.enableBackButton) {
       toolbarProps.onIconClicked = this.pop;
       toolbarProps.navIconName = 'arrow-back';
+    }
+    if (this.props.navIconName) {
+      toolbarProps.navIconName = this.props.navIconName;
     }
     return (
       <View style={styles.container}>

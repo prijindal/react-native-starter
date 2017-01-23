@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { View, TextInput, Keyboard } from 'react-native';
 
-import Router from '../Router';
+import Router from '../../Router';
 
 import Layout from '../../components/Layout';
+import StatusBar from '../../components/StatusBar';
 import Button from '../../components/Button';
 import theme from '../../themes/base-theme';
 
@@ -27,8 +28,11 @@ const styles = {
 
 class Login extends Component {
   static propTypes = {
+    navigation: PropTypes.shape({
+      getNavigator: PropTypes.func,
+    }).isRequired,
     navigator: PropTypes.shape({
-      immediatelyResetStack: PropTypes.func,
+      pop: PropTypes.func,
     }).isRequired,
     setUser: PropTypes.func.isRequired,
     user: PropTypes.shape({
@@ -45,40 +49,45 @@ class Login extends Component {
   }
 
   signIn = () => {
-    this.props.navigator.immediatelyResetStack([Router.getRoute('home')], 0);
+    this.props.navigator.pop();
+    this.props.navigation.getNavigator('app').immediatelyResetStack([Router.getRoute('home')], 0);
     this.props.setUser(this.state.name);
     Keyboard.dismiss();
   }
 
   render() {
     return (
-      <Layout
-        enableBackButton
-        onIconClicked={Keyboard.dismiss}
-        title="Login"
-        navigator={this.props.navigator}
-      >
-        <View style={styles.container}>
-          <TextInput
-            ref={(c) => { this.nameInput = c; }}
-            autoCapitalize="words"
-            style={styles.textInput}
-            placeholder="Name"
-            defaultValue={this.state.name}
-            onChangeText={name => this.setState({ name })}
-          />
-          <View style={styles.buttonContainer}>
-            <Button
-              textColor={theme.whiteText}
-              disabled={this.state.name === ''}
-              backgroundColor={this.state.name ? theme.primary500 : theme.primary100}
-              onPress={this.signIn}
-            >
-              SIGN IN
-            </Button>
+      <View>
+        <StatusBar />
+        <Layout
+          enableBackButton
+          navIconName="close"
+          onIconClicked={Keyboard.dismiss}
+          title="Login"
+          navigator={this.props.navigator}
+        >
+          <View style={styles.container}>
+            <TextInput
+              ref={(c) => { this.nameInput = c; }}
+              autoCapitalize="words"
+              style={styles.textInput}
+              placeholder="Name"
+              defaultValue={this.state.name}
+              onChangeText={name => this.setState({ name })}
+            />
+            <View style={styles.buttonContainer}>
+              <Button
+                textColor={theme.whiteText}
+                disabled={this.state.name === ''}
+                backgroundColor={this.state.name ? theme.primary500 : theme.primary100}
+                onPress={this.signIn}
+              >
+                SIGN IN
+              </Button>
+            </View>
           </View>
-        </View>
-      </Layout>
+        </Layout>
+      </View>
     );
   }
 }

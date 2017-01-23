@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import { NavigationStyles, NavigationProvider, StackNavigation } from '@exponent/ex-navigation';
+import { NavigationStyles, StackNavigation } from '@exponent/ex-navigation';
 import { DrawerLayoutAndroid, Dimensions, BackAndroid } from 'react-native';
 
 import StatusBar from '../StatusBar';
-import Router from '../../pages/Router';
+import Router from '../../Router';
 import SideBar from '../SideBar';
 
 class AppNavigator extends Component {
@@ -15,6 +15,7 @@ class AppNavigator extends Component {
     drawerState: PropTypes.string,
     closeDrawer: PropTypes.func.isRequired,
     openDrawer: PropTypes.func.isRequired,
+    navigation: PropTypes.shape({}).isRequired,
   }
 
   componentDidMount() {
@@ -28,7 +29,7 @@ class AppNavigator extends Component {
     }
 
     if (this.props.drawerState === 'closed') {
-      this._drawer.closeDrawer();
+      this.closeDrawer();
     }
   }
 
@@ -39,7 +40,7 @@ class AppNavigator extends Component {
   registerBackButton() {
     BackAndroid.addEventListener('hardwareBackPress', () => {
       if (this.props.drawerState === 'opened') {
-        this._drawer.closeDrawer();
+        this.closeDrawer();
         return true;
       }
       return false;
@@ -47,8 +48,12 @@ class AppNavigator extends Component {
   }
 
   openDrawer() {
-    // console.log(this._drawer.openDrawer());
     this._drawer.openDrawer();
+  }
+
+  closeDrawer = () => {
+    // console.log(this._drawer.openDrawer());
+    this._drawer.closeDrawer();
   }
 
   drawerWidth = () => {
@@ -63,22 +68,26 @@ class AppNavigator extends Component {
     return (
       <DrawerLayoutAndroid
         ref={(ref) => { this._drawer = ref; }}
-        renderNavigationView={() => <SideBar />}
+        renderNavigationView={() =>
+          <SideBar
+            closeDrawer={this.closeDrawer}
+            navigation={this.props.navigation}
+          />
+        }
         drawerWidth={this.drawerWidth()}
         onDrawerClose={this.props.closeDrawer}
         onDrawerOpen={this.props.openDrawer}
       >
-        <NavigationProvider router={Router}>
-          <StatusBar />
-          <StackNavigation
-            defaultRouteConfig={{
-              styles: {
-                ...NavigationStyles.FloatVertical,
-              },
-            }}
-            initialRoute={Router.getRoute('home')}
-          />
-        </NavigationProvider>
+        <StatusBar />
+        <StackNavigation
+          id="app"
+          defaultRouteConfig={{
+            styles: {
+              ...NavigationStyles.FloatVertical,
+            },
+          }}
+          initialRoute={Router.getRoute('home')}
+        />
       </DrawerLayoutAndroid>
     );
   }
