@@ -19,6 +19,7 @@ class AppNavigator extends Component {
 
   componentDidMount() {
     this.registerBackButton();
+    this.openDrawer();
   }
 
   componentDidUpdate() {

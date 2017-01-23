@@ -18,6 +18,7 @@ const styles = {
   text: {
     fontSize: 16,
     fontWeight: '500',
+    fontFamily: 'sans-serif-light',
     paddingLeft: 32,
     color: theme.primaryDarkText,
   },
@@ -34,8 +35,14 @@ class MenuItem extends Component {
       name: PropTypes.string,
       icon: PropTypes.string,
     }).isRequired,
-    iconColor: PropTypes.string,
-    textColor: PropTypes.string,
+    iconColor: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object,
+    ]),
+    textColor: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object,
+    ]),
   }
 
   render() {

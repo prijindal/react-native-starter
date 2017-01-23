@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { View, TextInput, Keyboard } from 'react-native';
-import TextInputLayout from 'react-native-text-input-layout';
 
 import Router from '../Router';
 
@@ -60,16 +59,14 @@ class Login extends Component {
         navigator={this.props.navigator}
       >
         <View style={styles.container}>
-          <TextInputLayout style={styles.textInputContainer}>
-            <TextInput
-              ref={(c) => { this.nameInput = c; }}
-              autoCapitalize="words"
-              style={styles.textInput}
-              placeholder="Name"
-              defaultValue={this.state.name}
-              onChangeText={name => this.setState({ name })}
-            />
-          </TextInputLayout>
+          <TextInput
+            ref={(c) => { this.nameInput = c; }}
+            autoCapitalize="words"
+            style={styles.textInput}
+            placeholder="Name"
+            defaultValue={this.state.name}
+            onChangeText={name => this.setState({ name })}
+          />
           <View style={styles.buttonContainer}>
             <Button
               textColor={theme.whiteText}

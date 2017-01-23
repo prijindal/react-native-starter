@@ -5068,10 +5068,6 @@ react-native-tab-view@0.0.42:
   version "0.0.42"
   resolved "https://registry.yarnpkg.com/react-native-tab-view/-/react-native-tab-view-0.0.42.tgz#abaeda8e7ab856db98c09709d3d82d2a08b94564"
 
-react-native-text-input-layout@^0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/react-native-text-input-layout/-/react-native-text-input-layout-0.0.5.tgz#46784c49ca91842ec914ff2294be599bfe476faa"
-
 react-native-uuid@^1.4.9:
   version "1.4.9"
   resolved "https://registry.yarnpkg.com/react-native-uuid/-/react-native-uuid-1.4.9.tgz#a526742f8fddfe6414500655212ca8d109c40229"
