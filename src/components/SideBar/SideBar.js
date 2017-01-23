@@ -150,7 +150,7 @@ class SideBar extends Component {
               </List>
               <List>
                 <MenuItem item={{ name: 'Drafts', icon: 'drafts' }} />
-                <MenuItem item={{ name: 'sent', icon: 'send' }} />
+                <MenuItem item={{ name: 'Sent', icon: 'send' }} />
                 <MenuItem item={{ name: 'Reminders', icon: 'touch-app' }} />
                 <MenuItem item={{ name: 'Trash', icon: 'delete' }} />
                 <MenuItem item={{ name: 'Spam', icon: 'error' }} />
