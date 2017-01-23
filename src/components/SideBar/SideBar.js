@@ -82,6 +82,10 @@ class SideBar extends Component {
       getNavigator: PropTypes.func,
     }).isRequired,
     closeDrawer: PropTypes.func.isRequired,
+    logout: PropTypes.func.isRequired,
+    user: PropTypes.shape({
+      name: PropTypes.string,
+    }).isRequired,
   }
 
   state = {
@@ -107,6 +111,11 @@ class SideBar extends Component {
   openPage = (page) => {
     this.props.closeDrawer();
     this.props.navigation.getNavigator('master').push(page);
+  }
+
+  logout = () => {
+    this.props.closeDrawer();
+    this.props.logout();
   }
 
   render() {
@@ -168,6 +177,9 @@ class SideBar extends Component {
               </List>
               <List>
                 <MenuItem item={{ name: 'Create New', icon: 'add' }} />
+                {this.props.user.name !== '' &&
+                  <MenuItem onPress={this.logout} item={{ name: 'Logout', icon: 'power-settings-new' }} />
+                }
               </List>
             </View> :
             <List noBorder>
