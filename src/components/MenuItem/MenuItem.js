@@ -16,7 +16,7 @@ const styles = {
     fontSize: 24,
   },
   text: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '500',
     fontFamily: 'sans-serif-light',
     paddingLeft: 32,
@@ -26,7 +26,7 @@ const styles = {
 
 class MenuItem extends Component {
   static defaultProps = {
-    iconColor: theme.primaryDarkText,
+    iconColor: theme.secondaryDarkText,
     textColor: theme.primaryDarkText,
     onPress: () => {},
   }

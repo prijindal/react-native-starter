@@ -10,7 +10,7 @@
 		"lint:test": "eslint tests/**/*.js",
 		"cleanApk": "rm android/app/build/outputs/apk/*.apk",
 		"assembleRelease": "cd android && ./gradlew assembleRelease && cd ..",
-		"signRelease": "jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore android/keystores/debug.keystore android/app/build/outputs/apk/app-release-unsigned.apk readgit",
+		"signRelease": "jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore android/app/debug.keystore android/app/build/outputs/apk/app-release-unsigned.apk readgit",
 		"alignRelease": "/home/prijindal/softwares/android-sdk-linux/build-tools/25.0.1/zipalign -v 4 android/app/build/outputs/apk/app-release-unsigned.apk android/app/build/outputs/apk/app-release.apk",
 		"release": "npm run cleanApk && npm run assembleRelease && npm run signRelease && npm run alignRelease",
 		"emulator": "emulator -avd NexusS",
