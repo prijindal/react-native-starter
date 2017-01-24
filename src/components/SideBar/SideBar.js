@@ -99,7 +99,6 @@ class SideBar extends Component {
     this.setState({
       imageHeight,
     });
-    this.openPage('settings');
   }
 
   toggleDownArrow = () => {

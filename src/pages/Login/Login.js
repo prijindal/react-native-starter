@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, TextInput, Keyboard } from 'react-native';
+import { View, Keyboard, TextInput } from 'react-native';
 
 import Router from '../../Router';
 
@@ -7,16 +7,12 @@ import Layout from '../../components/Layout';
 import StatusBar from '../../components/StatusBar';
 import Button from '../../components/Button';
 import theme from '../../themes/base-theme';
-import { TextInputLayoutAndroid } from '../../components/MaterialDesign';
 
 const styles = {
   container: {
     marginHorizontal: 8,
     alignItems: 'stretch',
     justifyContent: 'center',
-  },
-  textInputContainer: {
-    marginTop: 8,
   },
   textInput: {
     fontSize: 18,
@@ -45,10 +41,6 @@ class Login extends Component {
     name: this.props.user.name,
   }
 
-  componentDidMount() {
-    this.nameInput.focus();
-  }
-
   signIn = () => {
     this.props.navigator.pop();
     this.props.navigation.getNavigator('app').immediatelyResetStack([Router.getRoute('home')], 0);
@@ -68,16 +60,14 @@ class Login extends Component {
           navigator={this.props.navigator}
         >
           <View style={styles.container}>
-            <TextInputLayoutAndroid style={styles.textInputContainer}>
-              <TextInput
-                ref={(c) => { this.nameInput = c; }}
-                autoCapitalize="words"
-                style={styles.textInput}
-                placeholder="Name"
-                defaultValue={this.state.name}
-                onChangeText={name => this.setState({ name })}
-              />
-            </TextInputLayoutAndroid>
+            <TextInput
+              ref={(c) => { this.nameInput = c; }}
+              autoCapitalize="words"
+              placeholder="Name"
+              underlineColorAndroid={theme.primary500}
+              defaultValue={this.state.name}
+              onChangeText={name => this.setState({ name })}
+            />
             <View style={styles.buttonContainer}>
               <Button
                 textColor={theme.whiteText}

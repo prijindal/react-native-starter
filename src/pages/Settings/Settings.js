@@ -4,7 +4,6 @@ import { View, TextInput, Slider } from 'react-native';
 import theme from '../../themes/base-theme';
 import Layout from '../../components/Layout';
 import StatusBar from '../../components/StatusBar';
-import { TextInputLayoutAndroid } from '../../components/MaterialDesign';
 
 const styles = {
   container: {},
@@ -29,16 +28,14 @@ class Settings extends Component {
           navigator={this.props.navigator}
         >
           <View style={styles.container}>
-            <TextInputLayoutAndroid style={styles.textInputContainer}>
-              <TextInput
-                ref={(c) => { this.nameInput = c; }}
-                autoCapitalize="words"
-                style={styles.textInput}
-                underlineColorAndroid={theme.primary500}
-                placeholder="Name"
-                onChangeText={name => this.setState({ name })}
-              />
-            </TextInputLayoutAndroid>
+            <TextInput
+              ref={(c) => { this.nameInput = c; }}
+              autoCapitalize="words"
+              style={styles.textInput}
+              underlineColorAndroid={theme.primary500}
+              placeholder="Name"
+              onChangeText={name => this.setState({ name })}
+            />
             <Slider />
           </View>
         </Layout>
