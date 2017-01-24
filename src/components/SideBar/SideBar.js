@@ -99,6 +99,7 @@ class SideBar extends Component {
     this.setState({
       imageHeight,
     });
+    this.openPage('settings');
   }
 
   toggleDownArrow = () => {
@@ -109,8 +110,8 @@ class SideBar extends Component {
   }
 
   openPage = (page) => {
-    this.props.closeDrawer();
     this.props.navigation.getNavigator('master').push(page);
+    this.props.closeDrawer();
   }
 
   logout = () => {

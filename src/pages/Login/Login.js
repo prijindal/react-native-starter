@@ -7,6 +7,7 @@ import Layout from '../../components/Layout';
 import StatusBar from '../../components/StatusBar';
 import Button from '../../components/Button';
 import theme from '../../themes/base-theme';
+import TextInputLayout from '../../components/TextInputLayout';
 
 const styles = {
   container: {
@@ -67,14 +68,16 @@ class Login extends Component {
           navigator={this.props.navigator}
         >
           <View style={styles.container}>
-            <TextInput
-              ref={(c) => { this.nameInput = c; }}
-              autoCapitalize="words"
-              style={styles.textInput}
-              placeholder="Name"
-              defaultValue={this.state.name}
-              onChangeText={name => this.setState({ name })}
-            />
+            <TextInputLayout style={styles.textInputContainer}>
+              <TextInput
+                ref={(c) => { this.nameInput = c; }}
+                autoCapitalize="words"
+                style={styles.textInput}
+                placeholder="Name"
+                defaultValue={this.state.name}
+                onChangeText={name => this.setState({ name })}
+              />
+            </TextInputLayout>
             <View style={styles.buttonContainer}>
               <Button
                 textColor={theme.whiteText}

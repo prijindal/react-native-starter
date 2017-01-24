@@ -28,7 +28,7 @@ class AppNavigator extends Component {
     }
 
     if (this.props.drawerState === 'closed') {
-      this.closeDrawer();
+      this._drawer.closeDrawer();
     }
   }
 
@@ -39,7 +39,7 @@ class AppNavigator extends Component {
   registerBackButton() {
     BackAndroid.addEventListener('hardwareBackPress', () => {
       if (this.props.drawerState === 'opened') {
-        this.closeDrawer();
+        this._drawer.closeDrawer();
         return true;
       }
       return false;
@@ -48,11 +48,6 @@ class AppNavigator extends Component {
 
   openDrawer() {
     this._drawer.openDrawer();
-  }
-
-  closeDrawer = () => {
-    // console.log(this._drawer.openDrawer());
-    this._drawer.closeDrawer();
   }
 
   drawerWidth = () => {
@@ -69,7 +64,6 @@ class AppNavigator extends Component {
         ref={(ref) => { this._drawer = ref; }}
         renderNavigationView={() =>
           <SideBar
-            closeDrawer={this.closeDrawer}
             navigation={this.props.navigation}
           />
         }
