@@ -7,7 +7,7 @@ import Layout from '../../components/Layout';
 import StatusBar from '../../components/StatusBar';
 import Button from '../../components/Button';
 import theme from '../../themes/base-theme';
-import TextInputLayout from '../../components/TextInputLayout';
+import { TextInputLayoutAndroid } from '../../components/MaterialDesign';
 
 const styles = {
   container: {
@@ -68,7 +68,7 @@ class Login extends Component {
           navigator={this.props.navigator}
         >
           <View style={styles.container}>
-            <TextInputLayout style={styles.textInputContainer}>
+            <TextInputLayoutAndroid style={styles.textInputContainer}>
               <TextInput
                 ref={(c) => { this.nameInput = c; }}
                 autoCapitalize="words"
@@ -77,7 +77,7 @@ class Login extends Component {
                 defaultValue={this.state.name}
                 onChangeText={name => this.setState({ name })}
               />
-            </TextInputLayout>
+            </TextInputLayoutAndroid>
             <View style={styles.buttonContainer}>
               <Button
                 textColor={theme.whiteText}

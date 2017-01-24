@@ -1,13 +1,16 @@
 import React, { Component, PropTypes } from 'react';
-import { View, TextInput } from 'react-native';
+import { View, TextInput, Slider } from 'react-native';
 
 import theme from '../../themes/base-theme';
 import Layout from '../../components/Layout';
 import StatusBar from '../../components/StatusBar';
-import TextInputLayout from '../../components/TextInputLayout';
+import { TextInputLayoutAndroid } from '../../components/MaterialDesign';
 
 const styles = {
   container: {},
+  textInputContainer: {
+    marginTop: 5,
+  },
 };
 
 class Settings extends Component {
@@ -26,7 +29,7 @@ class Settings extends Component {
           navigator={this.props.navigator}
         >
           <View style={styles.container}>
-            <TextInputLayout style={styles.textInputContainer}>
+            <TextInputLayoutAndroid style={styles.textInputContainer}>
               <TextInput
                 ref={(c) => { this.nameInput = c; }}
                 autoCapitalize="words"
@@ -35,7 +38,8 @@ class Settings extends Component {
                 placeholder="Name"
                 onChangeText={name => this.setState({ name })}
               />
-            </TextInputLayout>
+            </TextInputLayoutAndroid>
+            <Slider />
           </View>
         </Layout>
       </View>
