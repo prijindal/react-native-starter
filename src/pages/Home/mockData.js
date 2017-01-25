@@ -1,5 +1,5 @@
-import faker from 'faker';
-import uuid from 'react-native-uuid';
+const faker = require('faker');
+const uuid = require('react-native-uuid');
 
 
 const mockList = (length = 15) => {
@@ -33,4 +33,4 @@ const mockData = () => [
   },
 ];
 
-export default mockData;
+module.exports = mockData;

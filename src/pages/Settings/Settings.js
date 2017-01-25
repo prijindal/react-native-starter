@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, TextInput, Slider } from 'react-native';
+import { View, TextInput, Slider, Picker } from 'react-native';
 
 import theme from '../../themes/base-theme';
 import Layout from '../../components/Layout';
@@ -14,7 +14,13 @@ const styles = {
 
 class Settings extends Component {
   static propTypes = {
-    navigator: PropTypes.shape({}).isRequired,
+    navigator: PropTypes.shape({
+      pop: PropTypes.func,
+    }).isRequired,
+  }
+
+  onActionSelected = () => {
+    this.props.navigator.pop();
   }
 
   render() {
@@ -23,6 +29,12 @@ class Settings extends Component {
         <StatusBar />
         <Layout
           enableBackButton
+          actions={[{
+            title: 'Save',
+            iconName: 'save',
+            show: 'always',
+          }]}
+          onActionSelected={this.onActionSelected}
           navIconName="close"
           title="Settings"
           navigator={this.props.navigator}
@@ -37,6 +49,13 @@ class Settings extends Component {
               onChangeText={name => this.setState({ name })}
             />
             <Slider />
+            <Picker
+              mode="dropdown"
+              style={{ justifyContent: 'flex-end' }}
+            >
+              <Picker.Item label="Java" value="java" />
+              <Picker.Item label="JavaScript" value="js" />
+            </Picker>
           </View>
         </Layout>
       </View>

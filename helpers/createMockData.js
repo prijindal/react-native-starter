@@ -1,16 +1,5 @@
-var faker = require('faker');
-var uuid = require('react-native-uuid')
-var fs = require('fs');
+const fs = require('fs');
+const path = require('path');
+const mockData = require('../src/pages/Home/mockData');
 
-const length = 15;
-const data = [];
-for (let i = 0; i < length; i += 1) {
-	data.push({
-	  id: uuid.v1(),
-	  title: faker.name.findName(),
-	  body: faker.address.streetAddress(),
-	  avatar: faker.image.avatar(),
-	});
-}
-
-fs.writeFileSync('mockedData.js', JSON.stringify(data, 0, 2));
+fs.writeFileSync(path.join(__dirname, './mockedData.json'), JSON.stringify(mockData(), 0, 2));

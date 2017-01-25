@@ -4,8 +4,8 @@ import { View, ScrollView, Text } from 'react-native';
 import Layout from '../../components/Layout';
 import ListItem from '../../components/ListItem';
 import theme from '../../themes/base-theme';
-// import mockedData from '../../../helpers/mockedData.json';
-import mockData from './mockData';
+import mockData from '../../../helpers/mockedData.json';
+// import mockData from './mockData';
 
 const styles = {
   view: {
@@ -54,7 +54,7 @@ class Home extends Component {
         if (!this._mounted) return;
         this.setState({
           loading: false,
-          data: mockData(),
+          data: mockData,
         });
       },
       0,

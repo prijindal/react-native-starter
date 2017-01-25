@@ -76,7 +76,7 @@ class AppNavigator extends Component {
           id="app"
           defaultRouteConfig={{
             styles: {
-              ...NavigationStyles.FloatVertical,
+              ...NavigationStyles.Fade,
             },
           }}
           initialRoute={Router.getRoute('home')}
