@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { View, Keyboard, TextInput } from 'react-native';
-
 import Router from '../../Router';
 
 import Layout from '../../components/Layout';
@@ -62,7 +61,6 @@ class Login extends Component {
           <View style={styles.container}>
             <TextInput
               ref={(c) => { this.nameInput = c; }}
-              autoCapitalize="words"
               placeholder="Name"
               underlineColorAndroid={theme.primary500}
               defaultValue={this.state.name}
