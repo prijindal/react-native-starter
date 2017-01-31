@@ -2793,6 +2793,10 @@ find-up@^1.0.0, find-up@^1.1.2:
     path-exists "^2.0.0"
     pinkie-promise "^2.0.0"
 
+fixed-size-queue@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/fixed-size-queue/-/fixed-size-queue-1.0.1.tgz#bbb095d1c0e57e2e151d38d5b860428efed58097"
+
 flat-cache@^1.2.1:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/flat-cache/-/flat-cache-1.2.2.tgz#fa86714e72c21db88601761ecf2f555d1abc6b96"

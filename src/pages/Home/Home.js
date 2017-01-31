@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import { View, ScrollView, Text } from 'react-native';
+import { View, Text } from 'react-native';
 
-import Layout from '../../components/Layout';
+import ScrollableLayout from '../../components/ScrollableLayout';
 import ListItem from '../../components/ListItem';
 import theme from '../../themes/base-theme';
 // import mockData from '../../../helpers/mockedData.json';
@@ -35,6 +35,7 @@ class Home extends Component {
   }
 
   state = {
+    refreshing: false,
     loading: false,
     actions: [],
     data: [],
@@ -46,16 +47,14 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    setTimeout(
-      () => {
-        if (!this._mounted) return;
-        this.setState({
-          loading: false,
-          data: mockData(),
-        });
-      },
-      0,
-    );
+    mockData()
+    .then((data) => {
+      if (!this._mounted) return;
+      this.setState({
+        loading: false,
+        data,
+      });
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -117,64 +116,55 @@ class Home extends Component {
     this.props.navigation.navigate('user', { user });
   }
 
-  onScroll = ({ nativeEvent }) => {
-    const offsetBuffer = 500;
-    const offset = nativeEvent.contentOffset.y;
-    const size = nativeEvent.contentSize.height;
-    const measurement = nativeEvent.layoutMeasurement.height;
-    if (size - (measurement + offset) < offsetBuffer) {
-      this.loadNewData();
-    }
-    // console.log(measurement + offset, size);
-  }
-
-  loadNewData() {
-    if (this.state.loading) return;
-    if (this.state.data.length > 10) return;
+  onRefresh = () => {
     this.setState({
-      loading: true,
+      refreshing: true,
     });
-    this.setState(prevState => ({
-      loading: false,
-      data: [
-        ...prevState.data,
-        ...mockData(),
-      ],
-    }));
+    mockData()
+    .then((data) => {
+      if (!this._mounted) return;
+      this.setState(() => ({
+        data,
+        refreshing: false,
+      }));
+    });
   }
 
   render() {
     return (
       <View style={styles.view}>
-        <Layout
+        <ScrollableLayout
           title="Home"
           actions={this.state.actions}
+          // loadNewData={this.loadNewData}
           onActionSelected={this.onActionSelected}
           navigation={this.props.navigation}
-        />
-        <ScrollView
-          ref={(c) => { this.scrollView = c; }}
-          onScroll={this.onScroll}
           style={styles.list}
+          onRefresh={this.onRefresh}
+          refreshing={this.state.refreshing}
         >
           {this.state.data.map(({ id, name, list }) =>
-            <View key={id}>
-              <View style={styles.subheader}>
-                <Text style={styles.subheaderText}>{name}</Text>
-              </View>
-              {
-                list.map((item, idx) =>
-                  <ListItem
-                    item={item}
-                    idx={idx}
-                    length={list.length}
-                    onPress={() => this.openUser(item)}
-                    key={item.id}
-                  />,
-              )}
+            <View>
+              {list.length > 0 &&
+                <View key={id}>
+                  <View style={styles.subheader}>
+                    <Text style={styles.subheaderText}>{name}</Text>
+                  </View>
+                  {
+                    list.map((item, idx) =>
+                      <ListItem
+                        item={item}
+                        idx={idx}
+                        length={list.length}
+                        onPress={() => this.openUser(item)}
+                        key={item.id}
+                      />,
+                  )}
+                </View>
+              }
             </View>,
           )}
-        </ScrollView>
+        </ScrollableLayout>
       </View>
     );
   }

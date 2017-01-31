@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { View } from 'react-native';
 import { ToolbarAndroid } from 'react-native-vector-icons/MaterialIcons';
 
-import StatusBar from '../../components/StatusBar';
+import StatusBar from '../StatusBar';
 import theme from '../../themes/base-theme';
 
 const styles = {
@@ -29,6 +29,7 @@ class Layout extends Component {
     toolbarStyle: {},
     navIconName: '',
     backgroundColor: theme.primary500,
+    statusBar: true,
   }
 
   static propTypes = {
@@ -52,6 +53,7 @@ class Layout extends Component {
       PropTypes.string,
       PropTypes.shape(),
     ]),
+    statusBar: PropTypes.bool,
   }
 
   pop = () => {
@@ -78,7 +80,9 @@ class Layout extends Component {
     }
     return (
       <View style={styles.container}>
-        <StatusBar backgroundColor={this.props.backgroundColor} />
+        {this.props.statusBar &&
+          <StatusBar backgroundColor={this.props.backgroundColor} />
+        }
         <ToolbarAndroid
           style={[styles.toolbar, this.props.toolbarStyle]}
           title={this.props.title}

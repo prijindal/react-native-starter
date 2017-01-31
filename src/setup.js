@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 
-import SplashScreen from './components/SplashScreen';
+import AppShell from './pages/AppShell';
 import configureStore from './configureStore';
 import AppNavigator from './components/AppNavigator';
 
@@ -14,7 +14,7 @@ function setup():React.Component {
 
     render() {
       if (this.state.isLoading) {
-        return <SplashScreen />;
+        return <AppShell />;
       }
       return (
         <Provider store={this.state.store}>
