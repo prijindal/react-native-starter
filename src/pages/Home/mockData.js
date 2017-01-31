@@ -17,17 +17,17 @@ const mockList = (length = 15) => {
 
 const mockData = () => [
   {
-    id: 1,
+    id: uuid.v1(),
     name: 'Today',
     list: mockList(2),
   },
   {
-    id: 2,
+    id: uuid.v1(),
     name: 'Yesterday',
     list: mockList(4),
   },
   {
-    id: 3,
+    id: uuid.v1(),
     name: 'This month',
     list: mockList(),
   },

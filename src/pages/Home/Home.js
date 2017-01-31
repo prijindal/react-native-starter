@@ -4,8 +4,8 @@ import { View, ScrollView, Text } from 'react-native';
 import Layout from '../../components/Layout';
 import ListItem from '../../components/ListItem';
 import theme from '../../themes/base-theme';
-import mockData from '../../../helpers/mockedData.json';
-// import mockData from './mockData';
+// import mockData from '../../../helpers/mockedData.json';
+import mockData from './mockData';
 
 const styles = {
   view: {
@@ -51,7 +51,7 @@ class Home extends Component {
         if (!this._mounted) return;
         this.setState({
           loading: false,
-          data: mockData,
+          data: mockData(),
         });
       },
       0,
@@ -117,6 +117,32 @@ class Home extends Component {
     this.props.navigation.navigate('user', { user });
   }
 
+  onScroll = ({ nativeEvent }) => {
+    const offsetBuffer = 500;
+    const offset = nativeEvent.contentOffset.y;
+    const size = nativeEvent.contentSize.height;
+    const measurement = nativeEvent.layoutMeasurement.height;
+    if (size - (measurement + offset) < offsetBuffer) {
+      this.loadNewData();
+    }
+    // console.log(measurement + offset, size);
+  }
+
+  loadNewData() {
+    if (this.state.loading) return;
+    if (this.state.data.length > 10) return;
+    this.setState({
+      loading: true,
+    });
+    this.setState(prevState => ({
+      loading: false,
+      data: [
+        ...prevState.data,
+        ...mockData(),
+      ],
+    }));
+  }
+
   render() {
     return (
       <View style={styles.view}>
@@ -126,7 +152,11 @@ class Home extends Component {
           onActionSelected={this.onActionSelected}
           navigation={this.props.navigation}
         />
-        <ScrollView style={styles.list}>
+        <ScrollView
+          ref={(c) => { this.scrollView = c; }}
+          onScroll={this.onScroll}
+          style={styles.list}
+        >
           {this.state.data.map(({ id, name, list }) =>
             <View key={id}>
               <View style={styles.subheader}>
