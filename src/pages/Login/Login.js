@@ -1,9 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { View, Keyboard, TextInput } from 'react-native';
-import Router from '../../Router';
 
 import Layout from '../../components/Layout';
-import StatusBar from '../../components/StatusBar';
 import Button from '../../components/Button';
 import theme from '../../themes/base-theme';
 
@@ -25,10 +23,7 @@ const styles = {
 class Login extends Component {
   static propTypes = {
     navigation: PropTypes.shape({
-      getNavigator: PropTypes.func,
-    }).isRequired,
-    navigator: PropTypes.shape({
-      pop: PropTypes.func,
+      navigate: PropTypes.func,
     }).isRequired,
     setUser: PropTypes.func.isRequired,
     user: PropTypes.shape({
@@ -41,8 +36,7 @@ class Login extends Component {
   }
 
   signIn = () => {
-    this.props.navigator.pop();
-    this.props.navigation.getNavigator('app').immediatelyResetStack([Router.getRoute('home')], 0);
+    this.props.navigation.navigate('home');
     this.props.setUser(this.state.name);
     Keyboard.dismiss();
   }
@@ -50,13 +44,12 @@ class Login extends Component {
   render() {
     return (
       <View>
-        <StatusBar />
         <Layout
           enableBackButton
           navIconName="close"
           onIconClicked={Keyboard.dismiss}
           title="Login"
-          navigator={this.props.navigator}
+          navigation={this.props.navigation}
         >
           <View style={styles.container}>
             <TextInput

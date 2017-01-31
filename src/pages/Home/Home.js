@@ -27,10 +27,7 @@ const styles = {
 class Home extends Component {
   static propTypes = {
     navigation: PropTypes.shape({
-      getNavigator: PropTypes.func,
-    }),
-    navigator: PropTypes.shape({
-      push: PropTypes.func,
+      navigate: PropTypes.func,
     }).isRequired,
     user: PropTypes.shape({
       name: PropTypes.string,
@@ -74,12 +71,12 @@ class Home extends Component {
   onActionSelected = (position) => {
     if (!this.props.user.name) {
       if (position === 0) {
-        this.props.navigation.getNavigator('master').push('login');
+        this.props.navigation.navigate('login');
       }
     } else if (position === 0) {
-      this.props.navigator.push('notifications');
+      this.props.navigation.navigate('notifications');
     } else if (position === 1) {
-      this.props.navigator.push('profile');
+      this.props.navigation.navigate('profile');
     }
   }
 
@@ -117,7 +114,7 @@ class Home extends Component {
   }
 
   openUser(user) {
-    this.props.navigator.push('user', { user });
+    this.props.navigation.navigate('user', { user });
   }
 
   render() {
@@ -127,7 +124,7 @@ class Home extends Component {
           title="Home"
           actions={this.state.actions}
           onActionSelected={this.onActionSelected}
-          navigator={this.props.navigator}
+          navigation={this.props.navigation}
         />
         <ScrollView style={styles.list}>
           {this.state.data.map(({ id, name, list }) =>

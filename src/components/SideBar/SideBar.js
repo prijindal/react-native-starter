@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import { ScrollView, TouchableNativeFeedback, Text, Image, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -76,16 +77,23 @@ const styles = {
   },
 };
 
+@connect(
+  () => ({ }),
+  dispatch => ({
+    navigate: routeName => dispatch({
+      type: 'Navigate',
+      routeName,
+    }),
+  }),
+)
 class SideBar extends Component {
   static propTypes = {
-    navigation: PropTypes.shape({
-      getNavigator: PropTypes.func,
-    }).isRequired,
     closeDrawer: PropTypes.func.isRequired,
     logout: PropTypes.func.isRequired,
     user: PropTypes.shape({
       name: PropTypes.string,
     }).isRequired,
+    navigate: PropTypes.func.isRequired,
   }
 
   state = {
@@ -109,7 +117,7 @@ class SideBar extends Component {
   }
 
   openPage = (page) => {
-    this.props.navigation.getNavigator('master').push(page);
+    this.props.navigate(page);
     this.props.closeDrawer();
   }
 

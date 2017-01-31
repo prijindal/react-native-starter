@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { NavigationStyles, NavigationProvider, StackNavigation } from '@exponent/ex-navigation';
 import { Provider } from 'react-redux';
 
 import SplashScreen from './components/SplashScreen';
-import Router from './Router';
 import configureStore from './configureStore';
+import AppNavigator from './components/AppNavigator';
 
 function setup():React.Component {
   class Root extends Component {
@@ -19,17 +18,7 @@ function setup():React.Component {
       }
       return (
         <Provider store={this.state.store}>
-          <NavigationProvider router={Router}>
-            <StackNavigation
-              id="master"
-              initialRoute={Router.getRoute('app')}
-              defaultRouteConfig={{
-                styles: {
-                  ...NavigationStyles.Fade,
-                },
-              }}
-            />
-          </NavigationProvider>
+          <AppNavigator />
         </Provider>
       );
     }

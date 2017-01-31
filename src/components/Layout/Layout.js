@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { View } from 'react-native';
 import { ToolbarAndroid } from 'react-native-vector-icons/MaterialIcons';
 
+import StatusBar from '../../components/StatusBar';
 import theme from '../../themes/base-theme';
 
 const styles = {
@@ -27,12 +28,13 @@ class Layout extends Component {
     onIconClicked: () => {},
     toolbarStyle: {},
     navIconName: '',
+    backgroundColor: theme.primary500,
   }
 
   static propTypes = {
     openDrawer: PropTypes.func.isRequired,
-    navigator: PropTypes.shape({
-      pop: PropTypes.func,
+    navigation: PropTypes.shape({
+      goBack: PropTypes.func,
     }).isRequired,
     children: PropTypes.node,
     enableBackButton: PropTypes.bool,
@@ -46,10 +48,14 @@ class Layout extends Component {
     onActionSelected: PropTypes.func,
     onIconClicked: PropTypes.func,
     navIconName: PropTypes.string,
+    backgroundColor: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.shape(),
+    ]),
   }
 
   pop = () => {
-    this.props.navigator.pop();
+    this.props.navigation.goBack();
     this.props.onIconClicked();
   }
 
@@ -72,6 +78,7 @@ class Layout extends Component {
     }
     return (
       <View style={styles.container}>
+        <StatusBar backgroundColor={this.props.backgroundColor} />
         <ToolbarAndroid
           style={[styles.toolbar, this.props.toolbarStyle]}
           title={this.props.title}

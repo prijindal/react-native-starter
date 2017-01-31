@@ -3,7 +3,6 @@ import { View, TextInput, Slider, Picker } from 'react-native';
 
 import theme from '../../themes/base-theme';
 import Layout from '../../components/Layout';
-import StatusBar from '../../components/StatusBar';
 
 const styles = {
   container: {},
@@ -14,19 +13,18 @@ const styles = {
 
 class Settings extends Component {
   static propTypes = {
-    navigator: PropTypes.shape({
-      pop: PropTypes.func,
+    navigation: PropTypes.shape({
+      goBack: PropTypes.func,
     }).isRequired,
   }
 
   onActionSelected = () => {
-    this.props.navigator.pop();
+    this.props.navigation.goBack();
   }
 
   render() {
     return (
       <View>
-        <StatusBar />
         <Layout
           enableBackButton
           actions={[{
@@ -37,7 +35,7 @@ class Settings extends Component {
           onActionSelected={this.onActionSelected}
           navIconName="close"
           title="Settings"
-          navigator={this.props.navigator}
+          navigation={this.props.navigation}
         >
           <View style={styles.container}>
             <TextInput

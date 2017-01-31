@@ -1,11 +1,19 @@
 import React, { Component, PropTypes } from 'react';
-import { NavigationStyles, StackNavigation } from '@exponent/ex-navigation';
+import { connect } from 'react-redux';
 import { DrawerLayoutAndroid, Dimensions, BackAndroid } from 'react-native';
 
-import StatusBar from '../StatusBar';
-import Router from '../../Router';
 import SideBar from '../SideBar';
+import Router from '../../Router';
 
+
+@connect(
+  ({ nav }) => ({ nav }),
+  dispatch => ({
+    goBack: () => dispatch({
+      type: 'Back',
+    }),
+  }),
+)
 class AppNavigator extends Component {
   static defaultProps = {
     drawerState: 'closed',
@@ -15,7 +23,10 @@ class AppNavigator extends Component {
     drawerState: PropTypes.string,
     closeDrawer: PropTypes.func.isRequired,
     openDrawer: PropTypes.func.isRequired,
-    navigation: PropTypes.shape({}).isRequired,
+    nav: PropTypes.shape({
+      index: PropTypes.number,
+    }).isRequired,
+    goBack: PropTypes.func.isRequired,
   }
 
   componentDidMount() {
@@ -42,6 +53,10 @@ class AppNavigator extends Component {
         this._drawer.closeDrawer();
         return true;
       }
+      if (this.props.nav.index > 0) {
+        this.props.goBack();
+        return true;
+      }
       return false;
     });
   }
@@ -63,24 +78,13 @@ class AppNavigator extends Component {
       <DrawerLayoutAndroid
         ref={(ref) => { this._drawer = ref; }}
         renderNavigationView={() =>
-          <SideBar
-            navigation={this.props.navigation}
-          />
+          <SideBar />
         }
         drawerWidth={this.drawerWidth()}
         onDrawerClose={this.props.closeDrawer}
         onDrawerOpen={this.props.openDrawer}
       >
-        <StatusBar />
-        <StackNavigation
-          id="app"
-          defaultRouteConfig={{
-            styles: {
-              ...NavigationStyles.Fade,
-            },
-          }}
-          initialRoute={Router.getRoute('home')}
-        />
+        <Router />
       </DrawerLayoutAndroid>
     );
   }

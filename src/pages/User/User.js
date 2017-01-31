@@ -16,17 +16,22 @@ const styles = {
 
 class User extends Component {
   static propTypes = {
-    navigator: PropTypes.shape({}).isRequired,
-    user: PropTypes.shape({
-      id: PropTypes.string,
-      title: PropTypes.string,
-      body: PropTypes.string,
-      avatar: PropTypes.string,
+    navigation: PropTypes.shape({
+      state: PropTypes.shape({
+        params: PropTypes.shape({
+          user: PropTypes.shape({
+            id: PropTypes.string,
+            title: PropTypes.string,
+            body: PropTypes.string,
+            avatar: PropTypes.string,
+          }).isRequired,
+        }),
+      }),
     }).isRequired,
   }
 
   render() {
-    const { title, avatar, body } = this.props.user;
+    const { title, avatar, body } = this.props.navigation.state.params.user;
     return (
       <View>
         <Image source={{ uri: avatar }} style={styles.avatar}>
@@ -34,10 +39,11 @@ class User extends Component {
             enableBackButton
             title={title}
             titleColor={theme.darkText}
+            backgroundColor={theme.transparent}
             toolbarStyle={styles.toolbar}
             actions={[]}
             onActionSelected={this.onActionSelected}
-            navigator={this.props.navigator}
+            navigation={this.props.navigation}
           />
         </Image>
         <Text style={styles.body}>{body}</Text>
