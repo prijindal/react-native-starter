@@ -1,9 +1,10 @@
 const faker = require('faker/build/build/locales/en_CA/faker.en_CA.min.js');
 const uuid = require('react-native-uuid');
-
+const nextFrame = require('next-frame');
 
 const mockList = async (length = 15) => {
   const data = [];
+  await nextFrame();
   for (let i = 0; i < length; i += 1) {
     data.push({
       id: uuid.v1(),
@@ -62,28 +63,6 @@ const mockData = async () => {
     }
   });
   return data;
-  // return [
-  //   {
-  //     id: uuid.v1(),
-  //     name: 'Today',
-  //     list: await mockList(4),
-  //   },
-  //   {
-  //     id: uuid.v1(),
-  //     name: 'Yesterday',
-  //     list: await mockList(8),
-  //   },
-  //   {
-  //     id: uuid.v1(),
-  //     name: 'This month',
-  //     list: await mockList(20),
-  //   },
-  //   {
-  //     id: uuid.v1(),
-  //     name: 'Last month',
-  //     list: await mockList(30),
-  //   },
-  // ];
 };
 
 module.exports = mockData;

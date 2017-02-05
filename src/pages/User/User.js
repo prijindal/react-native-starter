@@ -39,7 +39,6 @@ class User extends Component {
             enableBackButton
             title={title}
             titleColor={theme.darkText}
-            backgroundColor={theme.transparent}
             toolbarStyle={styles.toolbar}
             actions={[]}
             onActionSelected={this.onActionSelected}

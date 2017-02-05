@@ -61,17 +61,17 @@ class ScrollableLayout extends Component {
     }
     let marginTop = this.state.marginTop;
     this.queue.enqueue(isDown);
-    if (offset <= 0) {
-      marginTop = 0;
-    }
-    if (size - (measurement + offset) < 50) {
-      marginTop = -MARGIN;
-    }
     if (this.queue.container.every(item => item === true)) {
       marginTop = -MARGIN;
     }
     if (this.queue.container.every(item => item === false)) {
       marginTop = 0;
+    }
+    if (offset <= 0) {
+      marginTop = 0;
+    }
+    if (size - (measurement + offset) < 50) {
+      marginTop = -MARGIN;
     }
     this.setState({
       marginTop,

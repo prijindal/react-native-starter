@@ -5,6 +5,7 @@ import { DrawerLayoutAndroid, Dimensions, BackAndroid } from 'react-native';
 import SideBar from '../SideBar';
 import Router from '../../Router';
 
+import theme from '../../themes/base-theme';
 
 @connect(
   ({ nav }) => ({ nav }),
@@ -83,6 +84,7 @@ class AppNavigator extends Component {
         drawerWidth={this.drawerWidth()}
         onDrawerClose={this.props.closeDrawer}
         onDrawerOpen={this.props.openDrawer}
+        drawerBackgroundColor={theme.transparent}
       >
         <Router />
       </DrawerLayoutAndroid>

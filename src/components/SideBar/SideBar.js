@@ -17,7 +17,6 @@ const user = {
 
 const styles = {
   container: {
-    backgroundColor: theme.whiteText,
     flex: 1,
   },
   image: {
@@ -73,6 +72,9 @@ const styles = {
   },
   fixedView: {
     elevation: 8,
+    backgroundColor: theme.whiteText,
+  },
+  list: {
     backgroundColor: theme.whiteText,
   },
 };
@@ -157,7 +159,7 @@ class SideBar extends Component {
             </View>
           </Image>
           {this.state.downArrow ?
-            <View>
+            <View style={styles.list}>
               <List>
                 <MenuItem
                   item={{ name: 'Inbox', icon: 'inbox' }}

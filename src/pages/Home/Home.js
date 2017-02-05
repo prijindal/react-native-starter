@@ -79,6 +79,20 @@ class Home extends Component {
     }
   }
 
+  onRefresh = () => {
+    this.setState({
+      refreshing: true,
+    });
+    mockData()
+    .then((data) => {
+      if (!this._mounted) return;
+      this.setState(() => ({
+        data,
+        refreshing: false,
+      }));
+    });
+  }
+
   updateActions(props) {
     let actions = [];
     if (props.user.name) {
@@ -116,20 +130,6 @@ class Home extends Component {
     this.props.navigation.navigate('user', { user });
   }
 
-  onRefresh = () => {
-    this.setState({
-      refreshing: true,
-    });
-    mockData()
-    .then((data) => {
-      if (!this._mounted) return;
-      this.setState(() => ({
-        data,
-        refreshing: false,
-      }));
-    });
-  }
-
   render() {
     return (
       <View style={styles.view}>
@@ -144,9 +144,9 @@ class Home extends Component {
           refreshing={this.state.refreshing}
         >
           {this.state.data.map(({ id, name, list }) =>
-            <View>
+            <View key={id}>
               {list.length > 0 &&
-                <View key={id}>
+                <View>
                   <View style={styles.subheader}>
                     <Text style={styles.subheaderText}>{name}</Text>
                   </View>
