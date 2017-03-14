@@ -1,4 +1,4 @@
-const faker = require('faker/build/build/locales/en_CA/faker.en_CA.min.js');
+const faker = require('faker/locale/en_CA.js');
 const uuid = require('react-native-uuid');
 const nextFrame = require('next-frame');
 
