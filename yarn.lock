@@ -4637,7 +4637,7 @@ react-native-vector-icons@^4.0.0:
     lodash "^4.0.0"
     yargs "^6.3.0"
 
-react-native@next:
+react-native@^0.43.0-rc.2:
   version "0.43.0-rc.2"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.43.0-rc.2.tgz#a7d2a2dc9a8b0fd52721e36abb5432162b5d77a6"
   dependencies:
@@ -4768,7 +4768,7 @@ react-transform-hmr@^1.0.4:
     global "^4.3.0"
     react-proxy "^1.1.7"
 
-react@next:
+react@^16.0.0-alpha.4:
   version "16.0.0-alpha.4"
   resolved "https://registry.yarnpkg.com/react/-/react-16.0.0-alpha.4.tgz#1c25369aeee934df86466cf4f09144c7f6e3fac2"
   dependencies:
