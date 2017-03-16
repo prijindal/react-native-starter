@@ -14,6 +14,14 @@
 .*/Libraries/react-native/React.js
 .*/Libraries/react-native/ReactNative.js
 
+; React navigation library
+.*/node_modules/react-navigation/**.*
+
+; React Native
+.*/node_modules/react-native/Libraries/CustomComponents/Lists/__flowtests__/FlatList-flowtest.js
+.*/node_modules/react-native/Libraries/Network/FormData.js
+.*/node_modules/react-native/Libraries/Network/XMLHttpRequest.js
+
 [include]
 
 [libs]
@@ -36,9 +44,10 @@ suppress_type=$FlowIssue
 suppress_type=$FlowFixMe
 suppress_type=$FixMe
 
-suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe\\($\\|[^(]\\|(\\(>=0\\.\\(3[0-8]\\|[1-2][0-9]\\|[0-9]\\).[0-9]\\)? *\\(site=[a-z,_]*react_native[a-z,_]*\\)?)\\)
-suppress_comment=\\(.\\|\n\\)*\\$FlowIssue\\((\\(>=0\\.\\(3[0-8]\\|1[0-9]\\|[1-2][0-9]\\).[0-9]\\)? *\\(site=[a-z,_]*react_native[a-z,_]*\\)?)\\)?:? #[0-9]+
+suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe\\($\\|[^(]\\|(\\(>=0\\.\\(4[0-1]\\|[1-3][0-9]\\|[0-9]\\).[0-9]\\)? *\\(site=[a-z,_]*react_native_oss[a-z,_]*\\)?)\\)
+suppress_comment=\\(.\\|\n\\)*\\$FlowIssue\\((\\(>=0\\.\\(4[0-1]\\|[1-3][0-9]\\|[0-9]\\).[0-9]\\)? *\\(site=[a-z,_]*react_native_oss[a-z,_]*\\)?)\\)?:? #[0-9]+
 suppress_comment=\\(.\\|\n\\)*\\$FlowFixedInNextDeploy
+suppress_comment=\\(.\\|\n\\)*\\$FlowExpectedError
 
 unsafe.enable_getters_and_setters=true
 
