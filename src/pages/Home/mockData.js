@@ -3,7 +3,15 @@ const faker = require('faker/locale/en_CA.js');
 const uuid = require('react-native-uuid');
 const nextFrame = require('next-frame');
 
-const mockList = async (length = 15) => {
+type mockListType = (length: number) => Promise<Array<{
+  id: string,
+  title: string,
+  body: string,
+  avatar: string,
+  date: Date,
+}>>;
+
+const mockList: mockListType = async (length = 15) => {
   const data = [];
   await nextFrame();
   for (let i = 0; i < length; i += 1) {

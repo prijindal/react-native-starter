@@ -8,7 +8,7 @@ export type State = {
     drawerDisabled: boolean
 }
 
-const INITIAL_STATE = Immutable({
+const INITIAL_STATE: State = Immutable({
   drawerState: 'closed',
   drawerDisabled: true,
 });

@@ -5,6 +5,8 @@
 	"scripts": {
 		"start": "node node_modules/react-native/local-cli/cli.js start",
 		"flow": "flow",
+		"flow-typed": "flow-typed",
+		"postinstall": "flow-typed install",
 		"test": "NODE_ENV=production ava",
 		"lint:all": "npm run lint && npm run lint:test",
 		"lint": "eslint -c .eslintrc src/**/*.js",
@@ -48,7 +50,8 @@
 		"eslint-plugin-jsx-a11y": "^4.0.0",
 		"eslint-plugin-react": "^6.10.0",
 		"eslint-plugin-react-native": "^2.3.1",
-		"flow-bin": "^0.38.0",
+		"flow-bin": "^0.41.0",
+		"flow-typed": "^2.0.0",
 		"mockery": "^2.0.0",
 		"nyc": "^10.1.2",
 		"react-native-mock": "^0.3.1",
