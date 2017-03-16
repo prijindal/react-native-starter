@@ -1,3 +1,4 @@
+/* @flow */
 /* global window: 0 */
 import { AsyncStorage } from 'react-native';
 import { createStore, applyMiddleware, compose } from 'redux';

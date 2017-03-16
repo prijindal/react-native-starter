@@ -1,3 +1,4 @@
+/* @flow */
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 
@@ -5,7 +6,7 @@ import AppShell from './pages/AppShell';
 import configureStore from './configureStore';
 import AppNavigator from './components/AppNavigator';
 
-function setup():React.Component {
+function setup() {
   class Root extends Component {
     state = {
       isLoading: true,

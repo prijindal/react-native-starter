@@ -1,3 +1,4 @@
+/* @flow */
 import React, { Component, PropTypes } from 'react';
 import { View, Keyboard, TextInput } from 'react-native';
 
@@ -34,6 +35,8 @@ class Login extends Component {
   state = {
     name: this.props.user.name,
   }
+
+  nameInput: any
 
   signIn = () => {
     this.props.navigation.navigate('home');

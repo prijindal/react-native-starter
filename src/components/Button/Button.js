@@ -1,3 +1,4 @@
+/* @flow */
 import React, { Component, PropTypes } from 'react';
 import { TouchableNativeFeedback, Text } from 'react-native';
 import * as Animatable from 'react-native-animatable';
@@ -27,6 +28,24 @@ const styles = {
 };
 
 class Button extends Component {
+  static propTypes = {
+    children: PropTypes.string.isRequired,
+    onPress: PropTypes.func,
+    backgroundColor: PropTypes.string,
+    pressedBackgroundColor: PropTypes.string,
+    textColor: PropTypes.string,
+    disabled: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    children: '',
+    onPress: () => {},
+    backgroundColor: theme.primary500,
+    pressedBackgroundColor: theme.primary700,
+    textColor: theme.whiteText,
+    disabled: false,
+  }
+
   state = {
     raised: false,
   }
@@ -69,22 +88,5 @@ class Button extends Component {
     );
   }
 }
-
-Button.propTypes = {
-  children: PropTypes.string.isRequired,
-  onPress: PropTypes.func,
-  backgroundColor: PropTypes.string,
-  pressedBackgroundColor: PropTypes.string,
-  textColor: PropTypes.string,
-  disabled: PropTypes.bool,
-};
-
-Button.defaultProps = {
-  onPress: () => {},
-  backgroundColor: theme.primary500,
-  pressedBackgroundColor: theme.primary700,
-  textColor: theme.whiteText,
-  disabled: false,
-};
 
 export default Button;

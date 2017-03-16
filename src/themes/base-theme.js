@@ -1,3 +1,4 @@
+/* @flow */
 import color from 'color';
 
 export default {

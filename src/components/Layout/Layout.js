@@ -1,3 +1,4 @@
+/* @flow */
 import React, { Component, PropTypes } from 'react';
 import { View } from 'react-native';
 import { ToolbarAndroid } from 'react-native-vector-icons/MaterialIcons';
@@ -39,7 +40,7 @@ class Layout extends Component {
     }).isRequired,
     children: PropTypes.node,
     enableBackButton: PropTypes.bool,
-    toolbarStyle: PropTypes.shape(),
+    toolbarStyle: PropTypes.shape({}),
     title: PropTypes.string,
     titleColor: PropTypes.string,
     subtitle: PropTypes.string,
@@ -51,7 +52,7 @@ class Layout extends Component {
     navIconName: PropTypes.string,
     backgroundColor: PropTypes.oneOfType([
       PropTypes.string,
-      PropTypes.shape(),
+      PropTypes.shape({}),
     ]),
     statusBar: PropTypes.bool,
   }

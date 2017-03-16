@@ -1,3 +1,4 @@
+/* @flow */
 import React, { Component, PropTypes } from 'react';
 import { View, Text, Image } from 'react-native';
 
@@ -41,11 +42,10 @@ class User extends Component {
             titleColor={theme.darkText}
             toolbarStyle={styles.toolbar}
             actions={[]}
-            onActionSelected={this.onActionSelected}
             navigation={this.props.navigation}
           />
         </Image>
-        <Text style={styles.body}>{body}</Text>
+        <Text>{body}</Text>
       </View>
     );
   }

@@ -1,3 +1,4 @@
+/* @flow */
 import React, { PropTypes } from 'react';
 import { View } from 'react-native';
 import theme from '../../themes/base-theme';
@@ -8,7 +9,7 @@ const styles = {
   },
 };
 
-const StatusBar = props => (
+const StatusBar = (props: any) => (
   <View>
     <View style={[styles.statusbar, { backgroundColor: props.backgroundColor }]} />
   </View>
@@ -17,7 +18,7 @@ const StatusBar = props => (
 StatusBar.propTypes = {
   backgroundColor: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.shape(),
+    PropTypes.shape({}),
   ]),
 };
 

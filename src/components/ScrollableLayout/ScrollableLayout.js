@@ -1,3 +1,4 @@
+/* @flow */
 import React, { Component, PropTypes } from 'react';
 import { View, ScrollView, RefreshControl } from 'react-native';
 import * as Animatable from 'react-native-animatable';
@@ -34,13 +35,17 @@ class ScrollableLayout extends Component {
     marginTop: 0,
   }
 
+  queue: FixedQueue;
+  offset: number;
+  scrollView: any;
+
   componentWillMount() {
     this.changeToolbar = debounce(this.changeToolbar, 10);
     this.offset = 0;
     this.queue = FixedQueue.create(5);
   }
 
-  onScroll = (event) => {
+  onScroll = (event: any) => {
     event.persist();
     const { nativeEvent } = event;
     // console.log(nativeEvent);
@@ -54,7 +59,7 @@ class ScrollableLayout extends Component {
     this.changeToolbar(offset, size, measurement);
   }
 
-  changeToolbar = (offset, size, measurement) => {
+  changeToolbar = (offset: number, size: number, measurement: number) => {
     const isDown = offset - this.offset > 0;
     if (this.queue.getCount() >= this.queue.capacity) {
       this.queue.dequeue();

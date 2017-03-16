@@ -1,3 +1,4 @@
+/* @flow */
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { ScrollView, TouchableNativeFeedback, Text, Image, View } from 'react-native';
@@ -103,7 +104,7 @@ class SideBar extends Component {
     downArrow: true,
   }
 
-  onScrollViewLayout = (event) => {
+  onScrollViewLayout = (event: any) => {
     const { width } = event.nativeEvent.layout;
     const imageHeight = (width * 9) / 16;
     this.setState({
@@ -118,7 +119,7 @@ class SideBar extends Component {
     }));
   }
 
-  openPage = (page) => {
+  openPage = (page: any) => {
     this.props.navigate(page);
     this.props.closeDrawer();
   }

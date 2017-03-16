@@ -1,3 +1,4 @@
+/* @flow */
 const faker = require('faker/locale/en_CA.js');
 const uuid = require('react-native-uuid');
 const nextFrame = require('next-frame');

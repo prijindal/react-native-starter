@@ -1,3 +1,4 @@
+/* @flow */
 import React, { Component, PropTypes } from 'react';
 import { addNavigationHelpers } from 'react-navigation';
 import { connect } from 'react-redux';
@@ -10,7 +11,7 @@ import Routes from './Routes';
 class Router extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    nav: PropTypes.shape().isRequired,
+    nav: PropTypes.shape({}).isRequired,
   }
 
   render() {

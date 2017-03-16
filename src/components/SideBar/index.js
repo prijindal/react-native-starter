@@ -1,3 +1,4 @@
+/* @flow */
 import { connect } from 'react-redux';
 import SideBar from './SideBar';
 import { setUser } from '../../actions/user';

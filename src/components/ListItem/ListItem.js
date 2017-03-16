@@ -1,3 +1,4 @@
+/* @flow */
 import React, { Component, PropTypes } from 'react';
 import { TouchableNativeFeedback, View, Text, Image } from 'react-native';
 import theme from '../../themes/base-theme';
@@ -74,7 +75,7 @@ class ListItem extends Component {
           <Image source={{ uri: item.avatar }} style={styles.avatar} />
           <View style={styles.content}>
             <Text style={styles.text}>{item.title}</Text>
-            <Text style={styles.body}>{this.getBody()}</Text>
+            <Text>{this.getBody()}</Text>
           </View>
         </View>
       </TouchableNativeFeedback>

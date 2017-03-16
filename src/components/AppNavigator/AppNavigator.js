@@ -1,3 +1,4 @@
+/* @flow */
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { DrawerLayoutAndroid, Dimensions, BackAndroid } from 'react-native';
@@ -27,6 +28,8 @@ class AppNavigator extends Component {
     }).isRequired,
     goBack: PropTypes.func.isRequired,
   }
+
+  _drawer: any;
 
   componentDidMount() {
     this.registerBackButton();

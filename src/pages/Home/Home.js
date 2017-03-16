@@ -1,3 +1,4 @@
+/* @flow */
 import React, { Component, PropTypes } from 'react';
 import { View, Text } from 'react-native';
 
@@ -41,6 +42,8 @@ class Home extends Component {
     data: [],
   }
 
+  _mounted: boolean;
+
   componentWillMount() {
     this._mounted = true;
     this.updateActions(this.props);
@@ -57,7 +60,7 @@ class Home extends Component {
     });
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: any) {
     if (this._mounted) {
       this.updateActions(nextProps);
     }
@@ -67,7 +70,7 @@ class Home extends Component {
     this._mounted = false;
   }
 
-  onActionSelected = (position) => {
+  onActionSelected = (position: number) => {
     if (!this.props.user.name) {
       if (position === 0) {
         this.props.navigation.navigate('login');
@@ -93,7 +96,7 @@ class Home extends Component {
     });
   }
 
-  updateActions(props) {
+  updateActions(props: any) {
     let actions = [];
     if (props.user.name) {
       actions = [
@@ -126,7 +129,7 @@ class Home extends Component {
     }
   }
 
-  openUser(user) {
+  openUser(user: any) {
     this.props.navigation.navigate('user', { user });
   }
 
@@ -139,7 +142,6 @@ class Home extends Component {
           // loadNewData={this.loadNewData}
           onActionSelected={this.onActionSelected}
           navigation={this.props.navigation}
-          style={styles.list}
           onRefresh={this.onRefresh}
           refreshing={this.state.refreshing}
         >

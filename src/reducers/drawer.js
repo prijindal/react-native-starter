@@ -1,3 +1,4 @@
+/* @flow */
 import { createReducer } from 'reduxsauce';
 import Immutable from 'seamless-immutable';
 import { OPEN_DRAWER, CLOSE_DRAWER } from '../actions/drawer';

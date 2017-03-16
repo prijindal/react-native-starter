@@ -1,3 +1,4 @@
+/* @flow */
 import { connect } from 'react-redux';
 import Login from './Login';
 import { setUser } from '../../actions/user';

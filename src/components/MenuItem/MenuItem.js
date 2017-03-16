@@ -1,3 +1,4 @@
+/* @flow */
 import React, { Component, PropTypes } from 'react';
 import { TouchableNativeFeedback, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';

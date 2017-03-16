@@ -1,3 +1,4 @@
+/* @flow */
 import React, { Component, PropTypes } from 'react';
 import { View, TextInput, Slider, Picker } from 'react-native';
 
@@ -22,6 +23,12 @@ class Settings extends Component {
     this.props.navigation.goBack();
   }
 
+  state = {
+    
+  }
+
+  nameInput: any;
+
   render() {
     return (
       <View>
@@ -41,7 +48,6 @@ class Settings extends Component {
             <TextInput
               ref={(c) => { this.nameInput = c; }}
               autoCapitalize="words"
-              style={styles.textInput}
               underlineColorAndroid={theme.primary500}
               placeholder="Name"
               onChangeText={name => this.setState({ name })}
