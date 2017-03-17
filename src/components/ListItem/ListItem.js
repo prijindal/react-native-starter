@@ -1,6 +1,7 @@
 /* @flow */
 import React, { Component, PropTypes } from 'react';
 import { TouchableNativeFeedback, View, Text, Image } from 'react-native';
+import Interactable from 'react-native-interactable';
 import theme from '../../themes/base-theme';
 
 const styles = {
@@ -67,18 +68,29 @@ class ListItem extends Component {
     };
   }
 
+  onDrawerSnap() {
+    console.log('Delete This element')
+  }
+
   render() {
     const { item, onPress } = this.props;
     return (
-      <TouchableNativeFeedback onPress={onPress}>
-        <View style={[styles.view, this.getAdditionalStyles()]}>
-          <Image source={{ uri: item.avatar }} style={styles.avatar} />
-          <View style={styles.content}>
-            <Text style={styles.text}>{item.title}</Text>
-            <Text>{this.getBody()}</Text>
+      <Interactable.View
+        horizontalOnly={true}
+        snapPoints={[{x: 0}, {x: 200}, {x: -200}]}
+        onSnap={this.onDrawerSnap}
+        onPress={onPress}
+      >
+        <TouchableNativeFeedback>
+          <View style={[styles.view, this.getAdditionalStyles()]}>
+            <Image source={{ uri: item.avatar }} style={styles.avatar} />
+            <View style={styles.content}>
+              <Text style={styles.text}>{item.title}</Text>
+              <Text>{this.getBody()}</Text>
+            </View>
           </View>
-        </View>
-      </TouchableNativeFeedback>
+        </TouchableNativeFeedback>
+      </Interactable.View>
     );
   }
 }

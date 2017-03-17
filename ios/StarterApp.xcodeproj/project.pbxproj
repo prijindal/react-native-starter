@@ -47,6 +47,7 @@
 		6349F2CABCF24B53AD4FC33C /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A3089C7095543588E0D4519 /* SimpleLineIcons.ttf */; };
 		6CC732105A424F8381710972 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5C11F03723C34F8CB8020A2F /* Zocial.ttf */; };
 		698E758DA5EE445BAC8B42F9 /* libRCTMaterialKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DAE89C6581C461D9B4FD957 /* libRCTMaterialKit.a */; };
+		A67F702322BE45CBA20541A7 /* libInteractable.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF66A51081D492E8ED8BD01 /* libInteractable.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -280,6 +281,8 @@
 		5C11F03723C34F8CB8020A2F /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		9C005908C1A84603A9EA3DE9 /* RCTMaterialKit.xcodeproj */ = {isa = PBXFileReference; name = "RCTMaterialKit.xcodeproj"; path = "../node_modules/react-native-material-kit/iOS/RCTMaterialKit.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		0DAE89C6581C461D9B4FD957 /* libRCTMaterialKit.a */ = {isa = PBXFileReference; name = "libRCTMaterialKit.a"; path = "libRCTMaterialKit.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		D9326FE4E7DD4313BF668925 /* Interactable.xcodeproj */ = {isa = PBXFileReference; name = "Interactable.xcodeproj"; path = "../node_modules/react-native-interactable/ios/Interactable.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		EAF66A51081D492E8ED8BD01 /* libInteractable.a */ = {isa = PBXFileReference; name = "libInteractable.a"; path = "libInteractable.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -308,6 +311,7 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				17BD1FC14958469EB25961AF /* libRNVectorIcons.a in Frameworks */,
 				698E758DA5EE445BAC8B42F9 /* libRCTMaterialKit.a in Frameworks */,
+				A67F702322BE45CBA20541A7 /* libInteractable.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,6 +480,7 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				7DBFFF61B1D94318ABD90114 /* RNVectorIcons.xcodeproj */,
 				9C005908C1A84603A9EA3DE9 /* RCTMaterialKit.xcodeproj */,
+				D9326FE4E7DD4313BF668925 /* Interactable.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1041,6 +1046,11 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StarterApp.app/StarterApp";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-interactable/ios/Interactable",
 				);
 			};
 			name = Debug;
@@ -1061,6 +1071,11 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StarterApp.app/StarterApp";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-interactable/ios/Interactable",
 				);
 			};
 			name = Release;
@@ -1080,6 +1095,10 @@
 				);
 				PRODUCT_NAME = StarterApp;
 				VERSIONING_SYSTEM = "apple-generic";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-interactable/ios/Interactable",
+				);
 			};
 			name = Debug;
 		};
@@ -1097,6 +1116,10 @@
 				);
 				PRODUCT_NAME = StarterApp;
 				VERSIONING_SYSTEM = "apple-generic";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-interactable/ios/Interactable",
+				);
 			};
 			name = Release;
 		};
@@ -1123,6 +1146,14 @@
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-interactable/ios/Interactable",
+				);
 			};
 			name = Debug;
 		};
@@ -1149,6 +1180,14 @@
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-interactable/ios/Interactable",
+				);
 			};
 			name = Release;
 		};
@@ -1170,6 +1209,10 @@
 				SDKROOT = appletvos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StarterApp-tvOS.app/StarterApp-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 			};
 			name = Debug;
 		};
@@ -1191,6 +1234,10 @@
 				SDKROOT = appletvos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StarterApp-tvOS.app/StarterApp-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 			};
 			name = Release;
 		};
